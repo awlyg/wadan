@@ -8,6 +8,7 @@
 
 namespace App;
 use App\Controllers\APIController;
+use App\Core\BaseController;
 use App\Core\Request;
 use App\Controllers\DefaultController;
 use App\Helpers\AuthHelper;
@@ -89,8 +90,16 @@ class  Core {
 
         // handle authentification
         if($route_info['protect']) {
-            // $token = AuthHelper::getBearerToken();
-            // AuthHelper::validateToken();
+            // todo factorize
+            $token = AuthHelper::getBearerToken();
+            if (!$token || !AuthHelper::validateToken($token)) {
+                header('Content-type: application/json');
+                header('Access-Control-Allow-Origin: *');
+                $status = '500_ERROR';
+                echo json_encode(['status' => $status, 'data' => NULL]);
+                return true;
+            };
+
         }
 
         if($route_info['with_data'] == "true") {

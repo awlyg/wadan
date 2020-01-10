@@ -4,3 +4,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)$ index.php [NC,QSA,L]
 
 Options -Indexes
+
+
+<IfModule mod_headers.c>
+          Header set Access-Control-Allow-Headers "Authorization"
+</IfModule>

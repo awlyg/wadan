@@ -81,12 +81,7 @@ class APIController extends BaseController
     }
 
     function Login($request) {
-        /*
-         * {
-                "username": "admin",
-                "password": 123456789
-            }
-         */
+
         $data = Request::getJsonRequest(true);
         $username = $data['username'];
         $pwd = $data['password'];
