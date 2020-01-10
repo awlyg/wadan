@@ -1,0 +1,12 @@
+{
+    "name": "inejih/html",
+    "authors": [
+        {
+            "name": "cheikh el moctar",
+            "email": "elmoctar.yehdhih@gmail.com"
+        }
+    ],
+    "require": {
+        "rbdwllr/reallysimplejwt": "^2.0"
+    }
+}

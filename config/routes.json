@@ -1,0 +1,36 @@
+{
+  "/": {
+    "controller": "DefaultController",
+    "action": "Index",
+    "with_data": "false"
+  },
+  "/api/projects/all": {
+    "controller": "APIController",
+    "action": "Index",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/projects/new": {
+    "controller": "APIController",
+    "action": "addProject",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/projects/delete": {
+    "controller": "APIController",
+    "action": "deleteProject",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/projects/project": {
+    "controller": "APIController",
+    "action": "getProjectById",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/auth/login": {
+    "controller": "APIController",
+    "action": "Login",
+    "with_data": true
+  }
+}

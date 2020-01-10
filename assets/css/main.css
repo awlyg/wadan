@@ -1,0 +1,405 @@
+@import url('https://fonts.googleapis.com/css?family=Chilanka&display=swap');
+
+body{
+    font-size: 14px;
+    font-family: 'Chilanka', cursive;
+}
+/* home page */
+
+.home-page {
+    height: 500px;
+}
+.home-page table td, .home-page table th{
+    width: 50%;
+}
+/* end home page style */
+
+/* navbar style */
+.navbar{
+    background-color: #366AB6;
+    z-index: 999;
+    box-shadow: 0 3px 13px 3px #231c13;
+    position: fixed;
+    top: 0;
+    font-size: 18px;
+    width: 100%;
+    height: 55px;
+    transition: all 0.3s;
+}
+.navbar li{
+    margin-right: 5px;
+}
+.navbar-scrolling{
+    height: 50px;
+}
+.navbar .main-navigation a {
+    color: white;
+}
+.navbar .main-navigation a:hover{
+    color: black;
+    background-color: #f1f1f1;
+    transition: all 0.5s;
+}
+
+.navbar .main-navigation .active{
+    background-color: #f1f1f1;
+    color: black;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+}
+
+.navbar .time-frame{
+    display: inline-block;
+    width: 141px;
+    padding-left: 14px;
+    font-family: "Times New Roman", sans-serif;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    font-weight: bold;
+}
+
+/* end navbar style */
+
+.header-of-page {
+    height: 150px;
+    margin-top: 60px;
+    background-color: #fbfbfb;
+    position: relative;
+}
+.login-form{
+    height: 300px;
+}
+.header-of-page__content {
+    height: 100%;
+    text-align: center;
+    font-size: 34px;
+    padding-top: 50px;
+}
+.header-of-page__content .full_today {
+    font-size: 14px;
+    color: #cc3838;
+    font-weight: bold;
+    font-style: italic;
+    display: none;
+}
+/* hijri calendar style */
+.hide-it{
+    display: none;
+}
+.calendar-hijri {
+    margin-top: 30px;
+    box-shadow: 1px 0 4px 1px #aaaaaa;
+    padding: 15px;
+    border-radius: 18px;
+    background: #fefbd7;
+    position: relative;
+    min-height: 700px;
+}
+.show-unique-table{
+    height: 500px;
+    display: none;
+}
+.calendar-hijri__month a:hover{
+    text-decoration: none;
+}
+.calendar-hijri .right-arrow {
+    position: absolute;
+    right: 15px;
+    top: 22px;
+    cursor: pointer;
+}
+.calendar-hijri .left-arrow {
+    position: absolute;
+    left: 15px;
+    top: 22px;
+    cursor: pointer;
+}
+
+.calendar-hijri__month thead th{
+    border-bottom: none;
+    font-size: 14px;
+}
+
+.calendar-hijri__month {
+    background-color: beige;
+    /*box-shadow: 1px 0 4px 1px #aaaaaa;*/
+    transition: all 0.2s;
+
+}
+
+/*
+.calendar-hijri__month .label th{
+    border-right: none;
+}
+*/
+
+.calendar-hijri__title {
+    padding-bottom: 15px;
+}
+
+.calendar-hijri__month:hover{
+    cursor: pointer;
+    box-shadow: 5px 10px 20px 5px #aaaaaa;
+
+}
+.calendar-hijri__month th, .calendar-hijri__month td{
+    max-width: 20px;
+    text-align: center;
+    padding: 2px;
+    font-weight: 600;
+    border: 1px solid #cbcdd0;
+}
+.calendar-hijri__month .label th:nth-child(2){
+    vertical-align: middle;
+    font-size: 12px!important;
+}
+.calendar-hijri__month .label th:nth-child(1){
+    height: 44px;
+    vertical-align: middle;
+}
+/*.thead-dark.day-names th {
+    border-top: none;
+}*/
+.calendar-hijri__month th, .calendar-hijri__month td:hover {
+    background: white;
+}
+.today{
+    background-color: #d42121;
+}
+.today a {
+    color: white;
+}
+.today sub {
+    color: white;
+    opacity: 0.5;
+
+}
+.today:hover{
+    background: #d42121!important;
+}
+sub{
+    margin-left: 5px;
+    color: #366ab6;
+    opacity: 0.2;
+}
+.today{
+    /*background-color: #889eb1;*/
+}
+
+/* end hijri calendar style */
+
+/* signle month pages style  */
+
+.single-show-month .calendar-hijri__month th, .single-show-month .calendar-hijri__month td{
+    padding: 12px;
+}
+/* end signle month pages style  */
+
+
+
+/* solar calendar page style */
+
+.solar-calendar {
+    height: 350px;
+}
+
+
+/* end solar page style */
+
+/* ramadan page style */
+.ramadan{
+    height: 500px;
+}
+.ramadan .count-down td{
+    font-size: 11px;
+}
+.ramadan .ramadan-count-down{
+    background: #f1dfa7;
+}
+.ramadan .count-down{
+    margin: auto;
+}
+
+.ramadan .count-down th{
+    font-size: 24px;
+}
+.ramadan .count-down th, .ramadan .count-down td{
+    text-align: center;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.ramadan-intro {
+    margin-top: 135px;
+}
+.ramadan-header{
+    margin: 0;
+}
+
+
+
+/* end ramadan page style */
+.not-found-page{
+
+    height: 350px;
+}
+
+/* footer style */
+.page-footer {
+    height: 80px;
+    background: black;
+    text-align: center;
+    margin-top: 10px;
+    padding: 20px;
+    color: white;
+}
+
+/* end footer style */
+
+.lang_switcher{
+    border: none;
+    width: 35px;
+    cursor: pointer;
+}
+
+/*convertor page style */
+
+.converter {
+    height: 500px;
+    box-shadow: 0px 0 12px -5px black;
+    padding-top: 20px;
+    background-color: white;
+}
+.convert-card{
+    height: 100%;
+}
+.converter-result{
+    height: 100%;
+}
+
+.convert-button__row {
+    margin-top: 40px;
+}
+.converter-switch {
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+}
+.converter-switch img {
+    width: 100%;
+    height: 100%;
+}
+.Hto, .Gto {
+    font-style: italic;
+    margin-right: 5px;
+}
+.Gto{
+    display: none;
+}
+.converter-select .form-control{
+    padding-top: 0;
+}
+.converter-select {
+    margin-top: 25px;
+}
+.converter-select .georgian {
+    display: none;
+}
+.converter .loading {
+    text-align: center;
+    display: none;
+}
+.converter .loading .spinner-border{
+    width: 150px;
+    height: 150px;
+}
+.convert-button__col button{
+    float: right;
+}
+
+.result-table td:first-child{
+    font-weight: bold;
+}
+/* end converter page style */
+
+
+/* list months page style */
+.list-months h3{
+    margin-top: 20px;
+}
+.list-months__table td, .list-months__table th{
+    text-align: center;
+}
+.list-months__header{
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+.list-months .form-control{
+    padding-top: 0;
+}
+
+
+/* end of list months style */
+/* small screens */
+
+@media only screen and (max-width: 765px)  {
+    .navbar {
+        position: static;
+        height: auto;
+    }
+    .navbar-collapse.main-navigation{
+        margin-top: 10px;
+    }
+    .header-of-page {
+        height: 110px;
+        margin-top: 0;
+    }
+    .header-of-page__content{
+        font-size: 18px!important;
+        padding-top: 10px!important;
+
+    }
+    .header-of-page__content h1{
+        font-size: 25px;
+    }
+    .header-of-page__content .full_today{
+        font-size: 11px;
+    }
+    .converter{
+        height: auto;
+    }
+    .converter .card-header{
+        font-size: 13px;
+        line-height: 25px;
+    }
+    .converter-switch button{
+        font-size: 12px;
+    }
+    .converter select{
+        margin-bottom: 13px;
+    }
+    .day-names th {
+        font-size: 10px!important;
+    }
+    .ramadan {
+        height: auto;
+    }
+    .ramadan li {
+        font-size: 14px;
+        padding: 3px;
+    }
+    .ramadan li span {
+        font-size: 14px;
+    }
+    .calendar-hijri{
+        width: 90%;
+        margin: auto;
+    }
+    .convert-col{
+        margin-bottom: 15px;
+    }
+}
+
+
+/* end small screens */
