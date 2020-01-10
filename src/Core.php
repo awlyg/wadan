@@ -90,14 +90,10 @@ class  Core {
 
         // handle authentification
         if($route_info['protect']) {
-            // todo factorize
             $token = AuthHelper::getBearerToken();
-            if (!$token || !AuthHelper::validateToken($token)) {
-                header('Content-type: application/json');
-                header('Access-Control-Allow-Origin: *');
-                $status = '500_ERROR';
-                echo json_encode(['status' => $status, 'data' => NULL]);
-                return true;
+            if ($token && !AuthHelper::validateToken($token)) {
+                header("HTTP/1.1 401 Unauthorized");
+                exit;
             };
 
         }
