@@ -4,19 +4,29 @@
 namespace App\Services;
 
 
+use App\Helpers\AuthHelper;
+
 class AuthService
 {
 
-    static function checkCredentials($login, $pwd)
+    static function isLoggedIn($login, $pwd)
     {
         global $db;
 
         $db->where('username', $login);
         $db->where('password', $pwd);
 
-        $x = $db->getOne('user');
+        $user = $db->getOne('user');
 
-        var_dump($x);
+        $authToken = [];
+        if ($user) {
+            $authToken['uid'] = $user['id'];
+            $authToken['role'] = $user['role'];
+            $authToken['token'] = AuthHelper::generateToken($user['id']);
+
+            return $authToken;
+        }
+
+        return false;
     }
-
 }

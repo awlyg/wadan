@@ -70,7 +70,7 @@ class  Core {
 
 
         //to handle the language switcher
-        $this->handleLanguage($request);
+        // $this->handleLanguage($request);
 
 
         $routes_list = $this->getRoutesList();

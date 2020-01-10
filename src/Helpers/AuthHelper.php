@@ -10,7 +10,9 @@ class AuthHelper
 {
 
     private static $secret = 'sec!ReT423*&';
-
+    static function tes() {
+        return 'ff';
+    }
 
     // get the authorization header
     static function getAuthorizationHeader()

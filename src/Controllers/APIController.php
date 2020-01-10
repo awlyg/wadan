@@ -11,6 +11,7 @@ namespace App\Controllers;
 use App\Core\BaseController;
 use App\Core\Mahdra;
 use App\Core\Request;
+use App\Services\AuthService;
 use App\Services\ProjectService;
 use hijri;
 
@@ -80,12 +81,22 @@ class APIController extends BaseController
     }
 
     function Login($request) {
+        /*
+         * {
+                "username": "admin",
+                "password": 123456789
+            }
+         */
         $data = Request::getJsonRequest(true);
-
         $username = $data['username'];
         $pwd = $data['password'];
 
-        var_dump($username . $pwd);
-        die();
+        $user = AuthService::isLoggedIn($username, $pwd);
+
+        if ($user) {
+            return $this->JSONResponse($user);
+        }
+
+        return $this->JSONResponse(NULL);
     }
 }
