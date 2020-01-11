@@ -53,7 +53,6 @@ class BaseController
     public function JSONResponse($data){
 
         header('Content-type: application/json');
-        header('Access-Control-Allow-Origin: *');
 
         $status = !isset($data) ? '500_ERROR' : (empty($data) ? '500_EMPTY' : '200_OK');
         return json_encode(['status' => $status, 'data' => $data]);

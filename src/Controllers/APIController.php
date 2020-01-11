@@ -82,6 +82,11 @@ class APIController extends BaseController
 
     function Login($request) {
 
+        // Access-Control headers are received during OPTIONS requests
+        if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+            exit(0);
+        }
+
         $data = Request::getJsonRequest(true);
         $username = $data['username'];
         $pwd = $data['password'];

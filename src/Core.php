@@ -91,11 +91,14 @@ class  Core {
         // handle authentification
         if($route_info['protect']) {
             $token = AuthHelper::getBearerToken();
-            if ($token && !AuthHelper::validateToken($token)) {
+            if ($request->method !== 'OPTIONS' && (!$token || !AuthHelper::validateToken($token))) {
                 header("HTTP/1.1 401 Unauthorized");
                 exit;
-            };
-
+            } else if($request->method === 'OPTIONS') {
+                header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+                echo 'yes';
+                exit;
+            }
         }
 
         if($route_info['with_data'] == "true") {
@@ -125,25 +128,6 @@ class  Core {
         elseif ($current_lang == 'en'){
             return 'en';
         }
-    }
-
-    #switch language
-    private function handleLanguage($request){
-
-        if($request->method == 'POST' && isset($request->data['switch_lang'])){
-            if(\App\Core::getCurrentLanguage() == 'ar'){
-                $_SESSION['lang'] = 'en';
-                return;
-            }
-            elseif (\App\Core::getCurrentLanguage() == 'en'){
-                $_SESSION['lang'] = 'ar';
-                return;
-            }
-            else {
-                return false;
-            }
-        }
-
     }
 
 }
