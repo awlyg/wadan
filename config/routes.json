@@ -16,6 +16,12 @@
     "with_data": true,
     "protect": true
   },
+  "/api/projects/update": {
+    "controller": "APIController",
+    "action": "updateProject",
+    "with_data": true,
+    "protect": true
+  },
   "/api/projects/delete": {
     "controller": "APIController",
     "action": "deleteProject",

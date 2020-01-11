@@ -46,6 +46,25 @@ class ProjectService
         return $id;
     }
 
+    // update a existing project
+    static function updateProject($project, $pid)
+    {
+        global $db;
+        $id = NULL;
+
+        if (self::isValidProject($project)) {
+            $project = self::castProject($project);
+            try {
+                $db->where('id', $pid);
+                $id = $db->update('project', $project);
+            } catch (\Exception $exception) {
+                Log::write($exception, $db->getLastError());
+            }
+        }
+
+        return $id;
+    }
+
     // to delete a project,
     static function deleteProject($id)
     {

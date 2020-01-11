@@ -44,6 +44,24 @@ class APIController extends BaseController
         return $this->JSONResponse($result);
     }
 
+    // update existing project
+    public function updateProject($request) {
+
+        if($request->method !== 'POST') {
+            return $this->JSONResponse(NULL);
+        }
+        // get the project from the request
+        $data = Request::getJsonRequest(true);
+        $projectID = $data['id'];
+        unset($data['id']);
+
+        $id = ProjectService::updateProject($data, $projectID);
+
+        $result = isset($id) ? ['pid' => $id] : NULL;
+
+        return $this->JSONResponse($result);
+    }
+
     // soft delete a project
     public function deleteProject($request) {
 
