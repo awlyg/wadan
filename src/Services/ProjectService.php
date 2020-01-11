@@ -16,7 +16,7 @@ class ProjectService
         try {
             $db->where('deleted_at', NULL, 'IS');
 
-            if($status && in_array($status, ['opened', 'closed', 'progress', 'archived'])) {
+            if ($status && in_array($status, ['opened', 'closed', 'progress', 'archived'])) {
                 $db->where('status', $status);
             }
 
@@ -35,6 +35,7 @@ class ProjectService
         $id = NULL;
 
         if (self::isValidProject($project)) {
+            $project = self::castProject($project);
             try {
                 $id = $db->insert('project', $project);
             } catch (\Exception $exception) {
@@ -73,12 +74,12 @@ class ProjectService
     {
         $Model = [
             'name' => '',
-            'start_date' => '',
-            'end_date' => '',
+            'startDate' => '',
+            'endDate' => '',
             'status' => '',
             'manager' => '',
             'code' => '',
-            'po_value' => '',
+            'poValue' => '',
             'expenses' => '',
             'link' => ''
         ];
@@ -113,6 +114,19 @@ class ProjectService
             Log::write($exception, $db->getLastError());
             return false;
         }
+    }
+
+    private static function castProject($project)
+    {
+
+        $old = $project;
+        $project['start_date'] = $old['startDate'];
+        $project['end_date'] = $old['endDate'];
+        $project['po_value'] = $old['poValue'];
+
+        unset($project['startDate'], $project['endDate'], $project['poValue']);
+
+        return $project;
     }
 
 
