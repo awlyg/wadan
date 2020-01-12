@@ -58,7 +58,7 @@ class AuthHelper
 
     // generate token
     static function generateToken($uid) {
-        $expiration = time() + 3600;
+        $expiration = time() + (3600*24);
         $issuer = 'localhost';
         $token = Token::create($uid, self::$secret, $expiration, $issuer);
 

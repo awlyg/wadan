@@ -34,6 +34,12 @@
     "with_data": true,
     "protect": true
   },
+  "/api/notes/all": {
+    "controller": "NoteController",
+    "action": "Index",
+    "with_data": true,
+    "protect": true
+  },
   "/api/auth/login": {
     "controller": "APIController",
     "action": "Login",
