@@ -96,8 +96,7 @@ class  Core {
                 exit;
             } else if($request->method === 'OPTIONS') {
                 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-                echo 'yes';
-                exit;
+                exit(0);
             }
         }
 
