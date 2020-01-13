@@ -32,15 +32,34 @@ class NoteService
         return $notes;
     }
 
-    // update a existing note
+    // add a new note
+    static function addNote($note)
+    {
+        global $db;
+        $id = NULL;
 
+        if (self::isValidNote($note)) {
+
+            $note = self::castNote($note);
+            try {
+                $id = $db->insert('note', $note);
+            } catch (\Exception $exception) {
+                Log::write($exception, $db->getLastError());
+            }
+        }
+
+        return $id;
+    }
+
+
+    // update a existing note
     static function updateNote($note, $noteID)
     {
         global $db;
         $id = NULL;
 
         if (self::isValidNote($note)) {
-            $project = self::castNote($note);
+            $note = self::castNote($note);
             try {
                 $db->where('id', $noteID);
                 $id = $db->update('note', $note);
@@ -56,15 +75,12 @@ class NoteService
     private static function isValidNote($note)
     {
         $Model = [
+            'writer' => '',
+            'type' => '',
+            'typeID' => '',
             'text' => '',
-            'lastModified' => '',
-            'endDate' => '',
-            'status' => '',
-            'manager' => '',
-            'code' => '',
-            'poValue' => '',
-            'expenses' => '',
-            'link' => ''
+            'lastUpdate' => '',
+            'createdAt' => '',
         ];
         return DataValidator::payloadValidator($Model, $note);
 
@@ -72,6 +88,14 @@ class NoteService
 
     private static function castNote($note)
     {
+        $old = $note;
+
+        $note['type_id'] = $old['typeID'];
+        // $note['last_update'] = $old['lastUpdate'];
+        // $note['created_at'] = $old['createdAt'];
+
+        unset($note['typeID'], $note['lastUpdate'], $note['createdAt']);
+
         return $note;
     }
 

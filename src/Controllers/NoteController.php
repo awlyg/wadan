@@ -21,7 +21,7 @@ class NoteController extends BaseController
     function __construct()
     {}
 
-    // list all projects
+    // list all notes
     public function Index($request)
     {
         $type = (int) $request->data['type'];
@@ -32,6 +32,21 @@ class NoteController extends BaseController
         }
 
         return $this->JSONResponse(NoteService::getNotes($typeID, $type));
+    }
+
+    // add new note
+    public function addNote($request) {
+        if($request->method !== 'POST') {
+            return $this->JSONResponse(NULL);
+        }
+
+        // get the project from the request
+        $data = Request::getJsonRequest(true);
+
+        $id = NoteService::addNote($data);
+
+        $result = isset($id) ? ['nid' => $id] : NULL;
+        return $this->JSONResponse($result);
     }
 
 }
