@@ -113,8 +113,8 @@ class NoteService
         $old = $note;
 
         $note['type_id'] = $old['typeID'];
-        // $note['last_update'] = $old['lastUpdate'];
-        // $note['created_at'] = $old['createdAt'];
+        $note['last_update'] = $old['lastUpdate'];
+        $note['created_at'] = $old['createdAt'];
 
         unset($note['typeID'], $note['lastUpdate'], $note['createdAt']);
 

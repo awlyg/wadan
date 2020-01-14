@@ -46,6 +46,21 @@ class ProjectService
         return $id;
     }
 
+    // add a new project
+    static function addInvoice($invoice)
+    {
+        global $db;
+        $id = NULL;
+
+        try {
+            $id = $db->insert('invoice', $invoice);
+        } catch (\Exception $exception) {
+            Log::write($exception, $db->getLastError());
+        }
+
+        return $id;
+    }
+
     // update a existing project
     static function updateProject($project, $pid)
     {

@@ -49,6 +49,23 @@ class NoteController extends BaseController
         return $this->JSONResponse($result);
     }
 
+    // update existing note
+    public function updateNote($request) {
+
+        if($request->method !== 'POST') {
+            return $this->JSONResponse(NULL);
+        }
+        // get the project from the request
+        $data = Request::getJsonRequest(true);
+        $noteID = $data['id'];
+        unset($data['id']);
+
+        $id = NoteService::updateNote($data, $noteID);
+
+        $result = isset($id) ? ['nid' => $id] : NULL;
+
+        return $this->JSONResponse($result);
+    }
     // soft delete a note
     public function deleteNote($request) {
 

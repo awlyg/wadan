@@ -117,4 +117,18 @@ class APIController extends BaseController
 
         return $this->JSONResponse(NULL);
     }
+
+
+    // add new project
+    public function newInvoice($request) {
+        if($request->method !== 'POST') {
+            return $this->JSONResponse(NULL);
+        }
+        // get the project from the request
+        $data = Request::getJsonRequest(true);
+        $id = ProjectService::addInvoice($data);
+
+        $result = isset($id) ? ['icid' => $id] : NULL;
+        return $this->JSONResponse($result);
+    }
 }

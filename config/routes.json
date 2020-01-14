@@ -34,6 +34,18 @@
     "with_data": true,
     "protect": true
   },
+  "/api/projects/invoices/all": {
+    "controller": "APIController",
+    "action": "Invoice",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/projects/invoices/new": {
+    "controller": "APIController",
+    "action": "newInvoice",
+    "with_data": true,
+    "protect": true
+  },
   "/api/notes/all": {
     "controller": "NoteController",
     "action": "Index",
@@ -43,6 +55,12 @@
   "/api/notes/new": {
     "controller": "NoteController",
     "action": "addNote",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/notes/update": {
+    "controller": "NoteController",
+    "action": "updateNote",
     "with_data": true,
     "protect": true
   },
