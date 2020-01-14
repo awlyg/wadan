@@ -46,6 +46,12 @@
     "with_data": true,
     "protect": true
   },
+  "/api/notes/delete": {
+    "controller": "NoteController",
+    "action": "deleteNote",
+    "with_data": true,
+    "protect": true
+  },
   "/api/auth/login": {
     "controller": "APIController",
     "action": "Login",

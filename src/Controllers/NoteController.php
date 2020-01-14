@@ -49,4 +49,22 @@ class NoteController extends BaseController
         return $this->JSONResponse($result);
     }
 
+    // soft delete a note
+    public function deleteNote($request) {
+
+        $noteID = (int) $request->data['id'];
+
+        // todo change the method to delete
+        if($request->method !== 'GET' || empty($noteID)) {
+            return $this->JSONResponse(NULL);
+        }
+
+        $deleted = NoteService::deleteNote($noteID);
+
+        if($deleted) {
+            return $this->JSONResponse(['id' => $noteID]);
+        } else {
+            return $this->JSONResponse(NULL);
+        }
+    }
 }

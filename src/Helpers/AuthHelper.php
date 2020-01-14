@@ -10,9 +10,6 @@ class AuthHelper
 {
 
     private static $secret = 'sec!ReT423*&';
-    static function tes() {
-        return 'ff';
-    }
 
     // get the authorization header
     static function getAuthorizationHeader()
@@ -58,9 +55,17 @@ class AuthHelper
 
     // generate token
     static function generateToken($uid) {
-        $expiration = time() + (3600*24);
-        $issuer = 'localhost';
-        $token = Token::create($uid, self::$secret, $expiration, $issuer);
+
+        $payload = [
+            'iat' => time(),
+            'user_id' => $uid,
+            'full_name' => 'Saud Al Otaibi',
+            'user_role' => 'admin',
+            'exp' => time() + (3600*24),
+            'iss' => 'localhost',
+        ];
+
+        $token = Token::customPayload($payload, self::$secret);
 
         return $token;
     }

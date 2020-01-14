@@ -19,7 +19,7 @@ class NoteService
 
         $notes = null;
         global $db;
-
+        $db->where('deleted_at', NULL, 'IS');
         $db->where('type_id', $typeID);
         $db->where('type', $type);
 
@@ -71,6 +71,28 @@ class NoteService
         return $id;
     }
 
+    // to delete a note,
+    static function deleteNote($id)
+    {
+        global $db;
+        $db->where('id', $id);
+        $data = ['deleted_at' => date('Y-m-d H:i:s')];
+
+        if (!self::noteAlreadyDeleted($id)) {
+            try {
+                $db->where('id', $id);
+                $deleted = $db->update('note', $data);
+                if ($deleted)
+                    return true;
+            } catch (\Exception $exception) {
+                Log::write($exception, $db->getLastError());
+            }
+        } else {
+            // already deleted
+            return false;
+        }
+    }
+
     // check if the Note modal send by the front is valid
     private static function isValidNote($note)
     {
@@ -97,6 +119,21 @@ class NoteService
         unset($note['typeID'], $note['lastUpdate'], $note['createdAt']);
 
         return $note;
+    }
+
+    static function noteAlreadyDeleted($id)
+    {
+        global $db;
+
+        $db->where('id', $id);
+
+        $project = $db->getOne('note');
+
+        if (isset($project['deleted_at'])) {
+            return true;
+        }
+
+        return false;
     }
 
 }
