@@ -62,11 +62,12 @@ class ProjectService
     }
 
     // this function list projects
-    static function getAllInvoices()
+    static function getAllInvoices($pid)
     {
         $invoices = [];
         global $db;
         try {
+            $db->where('project_id', $pid);
             $db->where('deleted_at', NULL, 'IS');
             $invoices = $db->get('invoice');
         } catch (\Exception $exception) {
@@ -179,4 +180,31 @@ class ProjectService
     }
 
 
+    public function getAllBOQs($pid)
+    {
+
+        $projectsBOQs = [];
+        global $db;
+        try {
+            $db->where('deleted_at', NULL, 'IS');
+            $db->where('project_id', $projectsBOQs);
+            $groups = $db->get('boq_group');
+
+            $groupsIDs = [];
+            $newGroups = [];
+            foreach ($groups as $group) {
+                $groupsIDs [] = $group['Id'];
+                $newGroups [] = ['id' => $group['Id'], 'name' => $group['name']];
+            }
+
+            $db->where('id', $groupsIDs, 'IN');
+            $items = $db->get('boq');
+
+            return ['groups' => $newGroups, 'items' => $items];
+
+        } catch (\Exception $exception) {
+            Log::write($exception, $db->getLastError());
+            var_dump($db->getLastError());
+        }
+    }
 }

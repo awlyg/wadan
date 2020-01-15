@@ -46,6 +46,12 @@
     "with_data": true,
     "protect": true
   },
+  "/api/projects/boqs/all": {
+    "controller": "APIController",
+    "action": "getAllBOQs",
+    "with_data": true,
+    "protect": false
+  },
   "/api/notes/all": {
     "controller": "NoteController",
     "action": "Index",

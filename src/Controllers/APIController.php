@@ -135,7 +135,15 @@ class APIController extends BaseController
 
     // list add invoices
     public function Invoice($request) {
-        // $status = $request->data['status'];
-        return $this->JSONResponse(ProjectService::getAllInvoices());
+        $projectID = (int) $request->data['pid'];
+
+        return $this->JSONResponse(ProjectService::getAllInvoices($projectID));
+    }
+
+    // get all bill of quantities
+    public function getAllBOQs($request) {
+        $projectID = (int) $request->data['pid'];
+
+        return $this->JSONResponse(ProjectService::getAllBOQs($projectID));
     }
 }
