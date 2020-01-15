@@ -61,6 +61,21 @@ class ProjectService
         return $id;
     }
 
+    // this function list projects
+    static function getAllInvoices()
+    {
+        $invoices = [];
+        global $db;
+        try {
+            $db->where('deleted_at', NULL, 'IS');
+            $invoices = $db->get('invoice');
+        } catch (\Exception $exception) {
+            Log::write($exception, $db->getLastError());
+        }
+
+        return $invoices;
+    }
+
     // update a existing project
     static function updateProject($project, $pid)
     {

@@ -131,4 +131,11 @@ class APIController extends BaseController
         $result = isset($id) ? ['icid' => $id] : NULL;
         return $this->JSONResponse($result);
     }
+
+
+    // list add invoices
+    public function Invoice($request) {
+        // $status = $request->data['status'];
+        return $this->JSONResponse(ProjectService::getAllInvoices());
+    }
 }
