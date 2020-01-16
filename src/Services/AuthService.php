@@ -22,7 +22,7 @@ class AuthService
         if ($user) {
             $authToken['uid'] = $user['id'];
             $authToken['role'] = $user['role'];
-            $authToken['token'] = AuthHelper::generateToken($user['id']);
+            $authToken['token'] = AuthHelper::generateToken($user);
 
             return $authToken;
         }

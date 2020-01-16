@@ -54,13 +54,14 @@ class AuthHelper
     }
 
     // generate token
-    static function generateToken($uid) {
+    static function generateToken($user) {
 
         $payload = [
             'iat' => time(),
-            'user_id' => $uid,
-            'full_name' => 'Saud Al Otaibi',
-            'user_role' => 'admin',
+            'user_id' => $user['id'],
+            'full_name' => $user['full_name'],
+            'role_name' => $user['role_name'],
+            'role' => $user['role'],
             'exp' => time() + (3600*24),
             'iss' => 'localhost',
         ];
