@@ -98,5 +98,11 @@
     "action": "getUserById",
     "with_data": true,
     "protect": true
+  },
+  "/api/sales/bids/all": {
+    "controller": "SaleController",
+    "action": "Index",
+    "with_data": true,
+    "protect": false
   }
 }
