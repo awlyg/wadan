@@ -46,6 +46,12 @@
     "with_data": true,
     "protect": true
   },
+  "/api/projects/invoices/delete": {
+    "controller": "APIController",
+    "action": "deleteInvoice",
+    "with_data": true,
+    "protect": true
+  },
   "/api/projects/boqs/all": {
     "controller": "APIController",
     "action": "getAllBOQs",
@@ -80,5 +86,17 @@
     "controller": "APIController",
     "action": "Login",
     "with_data": true
+  },
+  "/api/users/all": {
+    "controller": "UserController",
+    "action": "Index",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/users/user": {
+    "controller": "UserController",
+    "action": "getUserById",
+    "with_data": true,
+    "protect": true
   }
 }

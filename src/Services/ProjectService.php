@@ -179,6 +179,22 @@ class ProjectService
         return $project;
     }
 
+    public static function deleteInvoice($invoiceID)
+    {
+        global $db;
+        $db->where('id', $invoiceID);
+        $data = ['deleted_at' => date('Y-m-d H:i:s')];
+        try {
+            $deleted = $db->update('invoice', $data);
+            if ($deleted)
+                return true;
+        } catch (\Exception $exception) {
+            Log::write($exception, $db->getLastError());
+        }
+
+        return false;
+    }
+
 
     public function getAllBOQs($pid)
     {

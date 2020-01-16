@@ -81,6 +81,25 @@ class APIController extends BaseController
         }
     }
 
+    // soft delete a project
+    public function deleteInvoice($request) {
+
+        $invoiceID = (int) $request->data['id'];
+
+        // todo change the method to delete
+        if($request->method !== 'GET' || empty($invoiceID)) {
+            return $this->JSONResponse(NULL);
+        }
+
+        $deleted = ProjectService::deleteInvoice($invoiceID);
+
+        if($deleted) {
+            return $this->JSONResponse(['id' => $invoiceID]);
+        } else {
+            return $this->JSONResponse(NULL);
+        }
+    }
+
     // get project using the id
 
     function getProjectById($request) {
