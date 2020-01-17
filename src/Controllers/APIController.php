@@ -162,7 +162,6 @@ class APIController extends BaseController
     // get all bill of quantities
     public function getAllBOQs($request) {
         $projectID = (int) $request->data['pid'];
-
         return $this->JSONResponse(ProjectService::getAllBOQs($projectID));
     }
 }

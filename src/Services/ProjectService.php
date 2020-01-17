@@ -50,10 +50,15 @@ class ProjectService
     static function addInvoice($invoice)
     {
         global $db;
-        $id = NULL;
+        $id = $invoice['id'];
 
         try {
-            $id = $db->insert('invoice', $invoice);
+            if (!$id) {
+                $id = $db->insert('invoice', $invoice);
+            } else {
+                $db->where('id', $id);
+                $id = $db->update('invoice', $invoice);
+            }
         } catch (\Exception $exception) {
             Log::write($exception, $db->getLastError());
         }
@@ -196,9 +201,8 @@ class ProjectService
     }
 
 
-    public function getAllBOQs($pid)
+    static function getAllBOQs($pid)
     {
-
         $projectsBOQs = [];
         global $db;
         try {
@@ -213,8 +217,13 @@ class ProjectService
                 $newGroups [] = ['id' => $group['Id'], 'name' => $group['name']];
             }
 
-            $db->where('id', $groupsIDs, 'IN');
-            $items = $db->get('boq');
+            if (count($groupsIDs) > 0) {
+                $db->where('group_id', $groupsIDs, 'IN');
+                $items = $db->get('boq');
+            } else {
+                $newGroups = null;
+                $items = null;
+            }
 
             return ['groups' => $newGroups, 'items' => $items];
 
