@@ -46,6 +46,12 @@
     "with_data": true,
     "protect": true
   },
+  "/api/projects/bids/new": {
+    "controller": "APIController",
+    "action": "newBid",
+    "with_data": true,
+    "protect": true
+  },
   "/api/projects/invoices/delete": {
     "controller": "APIController",
     "action": "deleteInvoice",

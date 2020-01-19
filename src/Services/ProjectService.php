@@ -46,7 +46,7 @@ class ProjectService
         return $id;
     }
 
-    // add a new project
+    // add a new invoice
     static function addInvoice($invoice)
     {
         global $db;
@@ -58,6 +58,27 @@ class ProjectService
             } else {
                 $db->where('id', $id);
                 $id = $db->update('invoice', $invoice);
+            }
+        } catch (\Exception $exception) {
+            Log::write($exception, $db->getLastError());
+        }
+
+        return $id;
+    }
+
+    // add a new bid
+    static function addBid($bid)
+    {
+        global $db;
+
+        $id = $bid['id'];
+
+        try {
+            if (!$id) {
+                $id = $db->insert('boq', $bid);
+            } else {
+                $db->where('id', $id);
+                $id = $db->update('boq', $bid);
             }
         } catch (\Exception $exception) {
             Log::write($exception, $db->getLastError());
