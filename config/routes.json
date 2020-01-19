@@ -115,6 +115,24 @@
     "controller": "SaleController",
     "action": "Index",
     "with_data": true,
-    "protect": false
+    "protect": true
+  },
+  "/api/sales/bids/delete": {
+    "controller": "SaleController",
+    "action": "deleteBid",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/sales/bids/new": {
+    "controller": "SaleController",
+    "action": "addUpdateBid",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/sales/bids/update": {
+    "controller": "SaleController",
+    "action": "addUpdateBid",
+    "with_data": true,
+    "protect": true
   }
 }

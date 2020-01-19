@@ -52,10 +52,11 @@ class ProjectService
         global $db;
         $id = NULL;
 
+        // todo delete
+        $group['name'] = $group['text'];
+        unset($group['text']);
         try {
-            var_dump($group);
             $id = $db->insert('boq_group', $group);
-            var_dump($db->getLastError());
         } catch (\Exception $exception) {
             Log::write($exception, $db->getLastError());
         }
@@ -87,9 +88,7 @@ class ProjectService
     static function addBoq($boq)
     {
         global $db;
-
         $id = $boq['id'];
-
         try {
             if (!$id) {
                 $id = $db->insert('boq', $boq);
@@ -245,7 +244,7 @@ class ProjectService
         global $db;
         try {
             $db->where('deleted_at', NULL, 'IS');
-            $db->where('project_id', $projectsBOQs);
+            $db->where('project_id', $pid);
             $groups = $db->get('boq_group');
 
             $groupsIDs = [];
@@ -267,7 +266,6 @@ class ProjectService
 
         } catch (\Exception $exception) {
             Log::write($exception, $db->getLastError());
-            var_dump($db->getLastError());
         }
     }
 }
