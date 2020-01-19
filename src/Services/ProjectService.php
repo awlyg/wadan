@@ -46,6 +46,23 @@ class ProjectService
         return $id;
     }
 
+    // add a new project
+    static function addGroup($group)
+    {
+        global $db;
+        $id = NULL;
+
+        try {
+            var_dump($group);
+            $id = $db->insert('boq_group', $group);
+            var_dump($db->getLastError());
+        } catch (\Exception $exception) {
+            Log::write($exception, $db->getLastError());
+        }
+
+        return $id;
+    }
+
     // add a new invoice
     static function addInvoice($invoice)
     {
@@ -67,18 +84,18 @@ class ProjectService
     }
 
     // add a new bid
-    static function addBid($bid)
+    static function addBoq($boq)
     {
         global $db;
 
-        $id = $bid['id'];
+        $id = $boq['id'];
 
         try {
             if (!$id) {
-                $id = $db->insert('boq', $bid);
+                $id = $db->insert('boq', $boq);
             } else {
                 $db->where('id', $id);
-                $id = $db->update('boq', $bid);
+                $id = $db->update('boq', $boq);
             }
         } catch (\Exception $exception) {
             Log::write($exception, $db->getLastError());

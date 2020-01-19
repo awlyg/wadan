@@ -151,19 +151,38 @@ class APIController extends BaseController
         return $this->JSONResponse($result);
     }
 
-    // add new project
-    public function newBid($request) {
+    // add new boq
+    public function newBoq($request) {
         if($request->method !== 'POST') {
             return $this->JSONResponse(NULL);
         }
         // get the project from the request
         $data = Request::getJsonRequest(true);
-        $id = ProjectService::addBid($data);
+        $id = ProjectService::addBoq($data);
 
-        $result = isset($id) ? ['bidid' => $id] : NULL;
+        $result = isset($id) ? ['boqid' => $id] : NULL;
         return $this->JSONResponse($result);
     }
 
+    // add new boq
+    public function newGroup($request) {
+        if($request->method !== 'GET') {
+            return $this->JSONResponse(NULL);
+        }
+
+        $group = [];
+
+        $text = $request->data['name'];
+        $pid = $request->data['pid'];
+
+        $group['project_id'] = $pid;
+        $group['text'] = $text;
+
+        $id = ProjectService::addGroup($group);
+
+        $gid = isset($id) ? ['gid' => $id] : NULL;
+        return $this->JSONResponse($gid);
+    }
     // list add invoices
     public function Invoice($request) {
         $projectID = (int) $request->data['pid'];

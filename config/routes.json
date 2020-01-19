@@ -46,9 +46,15 @@
     "with_data": true,
     "protect": true
   },
-  "/api/projects/bids/new": {
+  "/api/projects/boqs/new": {
     "controller": "APIController",
-    "action": "newBid",
+    "action": "newBoq",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/projects/boqs/group/new": {
+    "controller": "APIController",
+    "action": "newGroup",
     "with_data": true,
     "protect": true
   },
