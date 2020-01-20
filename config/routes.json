@@ -140,5 +140,11 @@
     "action": "getBidById",
     "with_data": true,
     "protect": true
+  },
+  "/api/sales/deals/all": {
+    "controller": "SaleController",
+    "action": "getAllDeals",
+    "with_data": true,
+    "protect": true
   }
 }

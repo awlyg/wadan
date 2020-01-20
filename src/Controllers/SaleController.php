@@ -22,6 +22,12 @@ class SaleController extends BaseController
     {
         return $this->JSONResponse(CommonService::getAll('bid'));
     }
+    // list all users with specific role
+    public function getAllDeals($request)
+    {
+        return $this->JSONResponse(CommonService::getAll('deal'));
+    }
+
 
     // soft delete a bid
     public function deleteBid($request) {
