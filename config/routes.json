@@ -134,5 +134,11 @@
     "action": "addUpdateBid",
     "with_data": true,
     "protect": true
+  },
+  "/api/sales/bid": {
+    "controller": "SaleController",
+    "action": "getBidById",
+    "with_data": true,
+    "protect": true
   }
 }

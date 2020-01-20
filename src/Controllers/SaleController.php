@@ -53,4 +53,20 @@ class SaleController extends BaseController
         $result = isset($id) ? ['bid' => $id] : NULL;
         return $this->JSONResponse($result);
     }
+
+
+    function getBidById($request) {
+        $bidID = (int) $request->data['id'];
+
+        if($request->method !== 'GET' || empty($bidID)) {
+            return $this->JSONResponse(NULL);
+        }
+
+        $bid = CommonService::getItemById($bidID, 'bid');
+        if ($bid) {
+            return $this->JSONResponse($bid);
+        }
+
+        return $this->JSONResponse(NULL);
+    }
 }

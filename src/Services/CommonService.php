@@ -5,7 +5,8 @@ namespace App\Services;
 
 use App\Core\Log;
 
-class CommonService {
+class CommonService
+{
 
     // this function list projects
     static function getAll($tableName)
@@ -77,5 +78,19 @@ class CommonService {
             Log::write($exception, $db->getLastError());
         }
         return $id;
+    }
+
+    public static function getItemById($itemID, $tableName)
+    {
+        global $db;
+        $db->where('id', $itemID);
+        try {
+            $item = $db->getOne($tableName);
+            return $item;
+
+        } catch (\Exception $exception) {
+            Log::write($exception, $db->getLastError());
+            return false;
+        }
     }
 }
