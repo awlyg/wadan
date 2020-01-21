@@ -48,6 +48,25 @@ class SaleController extends BaseController
         }
     }
 
+    // soft delete a bid
+    public function deleteDeal($request) {
+
+        $dealID = (int) $request->data['id'];
+
+        // todo change the method to delete
+        if($request->method !== 'GET' || empty($dealID)) {
+            return $this->JSONResponse(NULL);
+        }
+
+        $deleted = CommonService::deleteItem($dealID, 'Deal');
+
+        if($deleted) {
+            return $this->JSONResponse(['id' => $dealID]);
+        } else {
+            return $this->JSONResponse(NULL);
+        }
+    }
+
     public function addUpdateBid($request) {
         if($request->method !== 'POST') {
             return $this->JSONResponse(NULL);
@@ -57,6 +76,18 @@ class SaleController extends BaseController
         $id = CommonService::addUpdate('bid', $data);
 
         $result = isset($id) ? ['bid' => $id] : NULL;
+        return $this->JSONResponse($result);
+    }
+
+    public function addUpdateDeal($request) {
+        if($request->method !== 'POST') {
+            return $this->JSONResponse(NULL);
+        }
+        // get the project from the request
+        $data = Request::getJsonRequest(true);
+        $id = CommonService::addUpdate('deal', $data);
+
+        $result = isset($id) ? ['did' => $id] : NULL;
         return $this->JSONResponse($result);
     }
 

@@ -123,15 +123,33 @@
     "with_data": true,
     "protect": true
   },
+  "/api/sales/deals/delete": {
+    "controller": "SaleController",
+    "action": "deleteDeal",
+    "with_data": true,
+    "protect": true
+  },
   "/api/sales/bids/new": {
     "controller": "SaleController",
     "action": "addUpdateBid",
     "with_data": true,
     "protect": true
   },
+  "/api/sales/deals/new": {
+    "controller": "SaleController",
+    "action": "addUpdateDeal",
+    "with_data": true,
+    "protect": true
+  },
   "/api/sales/bids/update": {
     "controller": "SaleController",
     "action": "addUpdateBid",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/sales/deals/update": {
+    "controller": "SaleController",
+    "action": "addUpdateDeal",
     "with_data": true,
     "protect": true
   },
