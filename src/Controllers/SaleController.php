@@ -22,6 +22,7 @@ class SaleController extends BaseController
     {
         return $this->JSONResponse(CommonService::getAll('bid'));
     }
+
     // list all users with specific role
     public function getAllDeals($request)
     {
@@ -30,18 +31,19 @@ class SaleController extends BaseController
 
 
     // soft delete a bid
-    public function deleteBid($request) {
+    public function deleteBid($request)
+    {
 
-        $bidID = (int) $request->data['id'];
+        $bidID = (int)$request->data['id'];
 
         // todo change the method to delete
-        if($request->method !== 'GET' || empty($bidID)) {
+        if ($request->method !== 'GET' || empty($bidID)) {
             return $this->JSONResponse(NULL);
         }
 
         $deleted = CommonService::deleteItem($bidID, 'Bid');
 
-        if($deleted) {
+        if ($deleted) {
             return $this->JSONResponse(['id' => $bidID]);
         } else {
             return $this->JSONResponse(NULL);
@@ -49,26 +51,28 @@ class SaleController extends BaseController
     }
 
     // soft delete a bid
-    public function deleteDeal($request) {
+    public function deleteDeal($request)
+    {
 
-        $dealID = (int) $request->data['id'];
+        $dealID = (int)$request->data['id'];
 
         // todo change the method to delete
-        if($request->method !== 'GET' || empty($dealID)) {
+        if ($request->method !== 'GET' || empty($dealID)) {
             return $this->JSONResponse(NULL);
         }
 
         $deleted = CommonService::deleteItem($dealID, 'Deal');
 
-        if($deleted) {
+        if ($deleted) {
             return $this->JSONResponse(['id' => $dealID]);
         } else {
             return $this->JSONResponse(NULL);
         }
     }
 
-    public function addUpdateBid($request) {
-        if($request->method !== 'POST') {
+    public function addUpdateBid($request)
+    {
+        if ($request->method !== 'POST') {
             return $this->JSONResponse(NULL);
         }
         // get the project from the request
@@ -79,8 +83,9 @@ class SaleController extends BaseController
         return $this->JSONResponse($result);
     }
 
-    public function addUpdateDeal($request) {
-        if($request->method !== 'POST') {
+    public function addUpdateDeal($request)
+    {
+        if ($request->method !== 'POST') {
             return $this->JSONResponse(NULL);
         }
         // get the project from the request
@@ -92,16 +97,34 @@ class SaleController extends BaseController
     }
 
 
-    function getBidById($request) {
-        $bidID = (int) $request->data['id'];
+    function getBidById($request)
+    {
+        $bidID = (int)$request->data['id'];
 
-        if($request->method !== 'GET' || empty($bidID)) {
+        if ($request->method !== 'GET' || empty($bidID)) {
             return $this->JSONResponse(NULL);
         }
 
         $bid = CommonService::getItemById($bidID, 'bid');
         if ($bid) {
             return $this->JSONResponse($bid);
+        }
+
+        return $this->JSONResponse(NULL);
+    }
+
+
+    function getDealById($request)
+    {
+        $dealID = (int)$request->data['id'];
+
+        if ($request->method !== 'GET' || empty($dealID)) {
+            return $this->JSONResponse(NULL);
+        }
+
+        $deal = CommonService::getItemById($dealID, 'deal');
+        if ($deal) {
+            return $this->JSONResponse($deal);
         }
 
         return $this->JSONResponse(NULL);

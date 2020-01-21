@@ -159,6 +159,12 @@
     "with_data": true,
     "protect": true
   },
+  "/api/sales/deal": {
+    "controller": "SaleController",
+    "action": "getDealById",
+    "with_data": true,
+    "protect": true
+  },
   "/api/sales/deals/all": {
     "controller": "SaleController",
     "action": "getAllDeals",
