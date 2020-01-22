@@ -29,6 +29,12 @@ class SaleController extends BaseController
         return $this->JSONResponse(CommonService::getAll('deal'));
     }
 
+    // list all users with specific role
+    public function getAllVisits($request)
+    {
+        return $this->JSONResponse(CommonService::getAll('visit'));
+    }
+
 
     // soft delete a bid
     public function deleteBid($request)
@@ -45,6 +51,26 @@ class SaleController extends BaseController
 
         if ($deleted) {
             return $this->JSONResponse(['id' => $bidID]);
+        } else {
+            return $this->JSONResponse(NULL);
+        }
+    }
+
+    // soft delete a bid
+    public function deleteVisit($request)
+    {
+
+        $visitID = (int)$request->data['id'];
+
+        // todo change the method to delete
+        if ($request->method !== 'GET' || empty($visitID)) {
+            return $this->JSONResponse(NULL);
+        }
+
+        $deleted = CommonService::deleteItem($visitID, 'Visit');
+
+        if ($deleted) {
+            return $this->JSONResponse(['id' => $visitID]);
         } else {
             return $this->JSONResponse(NULL);
         }
