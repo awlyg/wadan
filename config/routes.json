@@ -147,6 +147,12 @@
     "with_data": true,
     "protect": true
   },
+  "/api/sales/visits/new": {
+    "controller": "SaleController",
+    "action": "addUpdateVisit",
+    "with_data": true,
+    "protect": true
+  },
   "/api/sales/bids/update": {
     "controller": "SaleController",
     "action": "addUpdateBid",
@@ -159,6 +165,12 @@
     "with_data": true,
     "protect": true
   },
+  "/api/sales/visits/update": {
+    "controller": "SaleController",
+    "action": "addUpdateVisit",
+    "with_data": true,
+    "protect": true
+  },
   "/api/sales/bid": {
     "controller": "SaleController",
     "action": "getBidById",
@@ -168,6 +180,12 @@
   "/api/sales/deal": {
     "controller": "SaleController",
     "action": "getDealById",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/sales/visit": {
+    "controller": "SaleController",
+    "action": "getVisitById",
     "with_data": true,
     "protect": true
   },

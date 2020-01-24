@@ -122,6 +122,19 @@ class SaleController extends BaseController
         return $this->JSONResponse($result);
     }
 
+    public function addUpdateVisit($request)
+    {
+        if ($request->method !== 'POST') {
+            return $this->JSONResponse(NULL);
+        }
+        // get the project from the request
+        $data = Request::getJsonRequest(true);
+        $id = CommonService::addUpdate('visit', $data);
+
+        $result = isset($id) ? ['vid' => $id] : NULL;
+        return $this->JSONResponse($result);
+    }
+
 
     function getBidById($request)
     {
@@ -155,4 +168,22 @@ class SaleController extends BaseController
 
         return $this->JSONResponse(NULL);
     }
+
+    function getVisitById($request)
+    {
+        $visitID = (int)$request->data['id'];
+
+        if ($request->method !== 'GET' || empty($visitID)) {
+            return $this->JSONResponse(NULL);
+        }
+
+        $visit = CommonService::getItemById($visitID, 'visit');
+        if ($visit) {
+            return $this->JSONResponse($visit);
+        }
+
+        return $this->JSONResponse(NULL);
+    }
+
+
 }

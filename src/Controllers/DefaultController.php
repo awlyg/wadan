@@ -17,12 +17,9 @@ class DefaultController extends BaseController
     //render site hompage
     public function index()
     {
-        $calendar_year_hijri = (int) (new \hijri\datetime())->format("_Y");
-
-        $path = \App\Core::mapingRouteReverse('/hijri') . "/$calendar_year_hijri";
-
-        header("location: $path");
+        header("location: /front");
     }
+
 
     //render site hompage
     public function TodayDate(){
