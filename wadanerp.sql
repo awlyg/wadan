@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le :  jeu. 16 jan. 2020 à 18:34
+-- Généré le :  ven. 24 jan. 2020 à 20:05
 -- Version du serveur :  8.0.17
 -- Version de PHP :  7.3.10
 
@@ -25,6 +25,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `bid`
+--
+
+CREATE TABLE `bid` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `client_name` varchar(150) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `cost` float DEFAULT NULL,
+  `submission_date` date DEFAULT NULL,
+  `manager` int(11) DEFAULT NULL,
+  `link` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `comment` varchar(150) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `letter_of_guarantee` tinyint(1) DEFAULT NULL,
+  `status` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `opening_date` date DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `bid`
+--
+
+INSERT INTO `bid` (`id`, `name`, `client_name`, `cost`, `submission_date`, `manager`, `link`, `comment`, `letter_of_guarantee`, `status`, `opening_date`, `deleted_at`) VALUES
+(1, 'Je suis le bid1', 'Sidi ahmed', 150000, '2020-01-21', 4, 'jhjhjh444j', 'iouiuouoi', 1, 'Archived', '2020-01-15', NULL),
+(3, 'Bid it', 'Ahmed', 1200, '2020-01-12', 4, '545', NULL, 1, 'Submitted', '2020-01-28', '2020-01-19 19:57:21'),
+(4, 'Bid', 'Elghawth', 12, '2020-01-12', 4, '545', NULL, 1, 'Archived', '2020-01-28', NULL),
+(5, 'test bid ot test', 'Ahmed Saledm', 10222, '2020-01-22', 4, 'http://google.com', NULL, 0, 'Submitted', '2020-01-15', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `boq`
 --
 
@@ -32,14 +63,28 @@ CREATE TABLE `boq` (
   `id` int(11) NOT NULL,
   `Item` varchar(200) DEFAULT NULL,
   `quantity` float NOT NULL,
-  `u_cost` float NOT NULL,
-  `u_price` float NOT NULL,
-  `complete_percentage` varchar(25) NOT NULL,
+  `cost` float NOT NULL,
+  `price` float NOT NULL,
+  `progress` varchar(25) DEFAULT NULL,
   `po_no` varchar(200) DEFAULT NULL,
+  `delivery_date` date DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
-  `group_id` int(11) NOT NULL,
-  `Note` text NOT NULL
+  `group_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `boq`
+--
+
+INSERT INTO `boq` (`id`, `Item`, `quantity`, `cost`, `price`, `progress`, `po_no`, `delivery_date`, `deleted_at`, `group_id`) VALUES
+(3, 'I\'m the first item ', 5, 100, 1200, '20%', '565sd', NULL, NULL, 1),
+(4, NULL, 41, 12, 12, NULL, NULL, NULL, NULL, 1),
+(5, 'sfsf', 12, 12, 140, '10%', 'SS#F', '2020-01-13', NULL, 1),
+(6, 'fs', 121121, 25, 12, '10%', '11Fv', '2020-01-06', NULL, 1),
+(7, 'test item', 14, 200, 200, '10%', 'RRE', '2020-01-27', NULL, 2),
+(8, 'fhfh', 111, 4141, 14, '20%', 'ghfh', '2020-01-07', NULL, 3),
+(9, 'elem2', 15, 1500, 100, '5%', '454R', '2020-01-14', NULL, 3),
+(10, 'ICic', 24, 120, 100, '10%', '1004', '2019-12-31', NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -53,6 +98,46 @@ CREATE TABLE `boq_group` (
   `project_id` int(11) NOT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `boq_group`
+--
+
+INSERT INTO `boq_group` (`Id`, `name`, `project_id`, `deleted_at`) VALUES
+(1, 'CISCO', 1, NULL),
+(2, 'TEST', 1, NULL),
+(3, 'Group Item', 19, NULL),
+(4, 'Cisco', 19, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `deal`
+--
+
+CREATE TABLE `deal` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `client_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `contact` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `value` float DEFAULT NULL,
+  `expected_close` date DEFAULT NULL,
+  `status` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `manager` int(11) DEFAULT NULL,
+  `last_update` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `deal`
+--
+
+INSERT INTO `deal` (`id`, `name`, `client_name`, `contact`, `value`, `expected_close`, `status`, `manager`, `last_update`, `deleted_at`) VALUES
+(1, 'Deal1', 'Deal1 client', '2245343', 120001, '2020-01-07', 'Negotiation', 4, '2020-01-09 10:51:22', NULL),
+(2, 'dgwg', 'agasgadg', 'dgdgdg', 1400, '2020-01-09', 'Negotiation', 4, NULL, '2020-01-21 19:44:24'),
+(3, 'dgwg', 'sfhrfh', '+52454', 1400, '2020-01-09', 'Archived', 4, NULL, NULL),
+(4, 'Test name', 'hlhlhl', '5454', 656, '2020-01-14', 'Submitted', 4, NULL, NULL),
+(5, 'the new deal', 'ahmed sale', '+55454', 1400, '2020-01-17', 'Submitted', 4, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -86,14 +171,28 @@ INSERT INTO `invoice` (`id`, `project_id`, `bill_num`, `amount`, `date`, `delete
 (10, 19, '11', 11111100000, '2020-01-28', '2020-01-16 16:53:49'),
 (11, 19, '414141', 4444440, '2020-01-19', '2020-01-16 16:54:20'),
 (12, 19, 'inejih', 1996, '2020-01-02', '2020-01-16 16:54:23'),
-(13, 19, 'Bill X00', 15000, '2019-12-31', NULL),
-(14, 19, '21212', 41454, '2020-01-26', NULL),
-(15, 19, '2332', 11111, '2020-01-14', NULL),
-(16, 19, 'fdfdf', 541545, '2020-01-11', NULL),
-(17, 19, 'dfdfd', 45645, '2020-01-27', NULL),
-(18, 19, 'dfdfdf', 554545, '2020-01-28', NULL),
-(19, 19, '545454', 545445, '2020-01-27', NULL),
-(20, 19, '555', 5454540, '2020-01-20', NULL);
+(13, 19, 'Bill X00', 15000, '2019-12-31', '2020-01-17 15:00:20'),
+(14, 19, '21212', 41454, '2020-01-26', '2020-01-16 23:42:39'),
+(15, 19, '2332', 11111, '2020-01-14', '2020-01-17 16:28:43'),
+(16, 19, 'fdfdf', 541545, '2020-01-11', '2020-01-17 15:00:16'),
+(17, 19, 'dfdfd', 45645, '2020-01-27', '2020-01-17 15:00:10'),
+(18, 19, 'dfdfdf', 554545, '2020-01-28', '2020-01-17 14:49:01'),
+(19, 19, '545454', 545445, '2020-01-27', '2020-01-17 14:48:59'),
+(20, 19, '555', 5454540, '2020-01-20', '2020-01-17 14:48:57'),
+(21, 0, 'test', 23554, '2020-01-14', NULL),
+(22, 19, '45455', 15, '2020-01-26', '2020-01-17 15:00:14'),
+(23, 19, 'hj', 666, '2020-01-08', '2020-01-17 15:57:18'),
+(24, 19, 'New name', 1111110000, '2020-01-21', NULL),
+(25, 19, 'fffffffff', 332323, '2020-01-22', NULL),
+(26, 19, 'dfdfdf', 54545, '2020-01-19', NULL),
+(27, 19, 'gggggg', 12, '2020-01-14', NULL),
+(28, 19, 'dggggggggg', 145151, '2020-01-22', NULL),
+(29, 19, 'rg445', 54545, '2020-01-21', '2020-01-17 16:27:02'),
+(30, 19, 'gggggggggg', 21212, '2020-01-14', NULL),
+(31, 19, 'ggggggg', 545, '2020-01-08', NULL),
+(32, 19, 'hhhhhh', 11111100, '2019-12-31', NULL),
+(33, 19, 'fffffffff', 566565, '2020-01-01', NULL),
+(34, 19, 'IC3', 2121210, '2020-01-08', NULL);
 
 -- --------------------------------------------------------
 
@@ -198,7 +297,19 @@ INSERT INTO `note` (`id`, `writer`, `type`, `type_id`, `text`, `last_update`, `c
 (79, 'Saud Al Otaibi', 1, 19, 'test ot', '2020-01-14T22:16:57.488Z', '2020-01-14T22:16:57.488Z', '2020-01-14 22:17:32'),
 (80, 'Saud Al Otaibi', 1, 19, 'test it again', '2020-01-14T22:17:14.164Z', '2020-01-14T22:17:14.164Z', '2020-01-14 22:17:29'),
 (81, 'Saud Al Otaibi', 1, 19, 'Ggchhcg', '2020-01-15T11:32:33.046Z', '2020-01-15T11:32:33.046Z', '2020-01-16 14:08:29'),
-(82, 'Mohamed Yehdhih', 1, 19, 'CCCCCCCCCCCCCC', '2020-01-16T11:26:49.934Z', '2020-01-16T11:26:49.934Z', '2020-01-16 14:08:30');
+(82, 'Mohamed Yehdhih', 1, 19, 'CCCCCCCCCCCCCC', '2020-01-16T11:26:49.934Z', '2020-01-16T11:26:49.934Z', '2020-01-16 14:08:30'),
+(83, 'Saud Al Otaibi', 1, 19, 'بسم الله الرحمان الرحيم, الله يسر ولاتعسر ', '2020-01-17T14:11:41.644Z', '2020-01-17T14:11:41.644Z', NULL),
+(84, 'Saud Al Otaibi', 1, 19, 'اللهم لاسهل إلا ماجعلته سهلا', '2020-01-17T14:12:42.539Z', '2020-01-17T14:11:55.844Z', NULL),
+(85, 'Saud Al Otaibi', 1, 19, 'تجعل الحزن إن شئت سهلا', '2020-01-17T14:12:11.092Z', '2020-01-17T14:12:11.092Z', '2020-01-17 14:12:33'),
+(86, 'Saud Al Otaibi', 1, 19, 'My loard, help me ', '2020-01-17T14:12:24.035Z', '2020-01-17T14:12:24.035Z', '2020-01-17 19:05:55'),
+(87, 'Saud Al Otaibi', 1, 19, 'تالاالالالاات اتلتالا لتالتال تا', '2020-01-17T19:06:05.750Z', '2020-01-17T19:05:50.086Z', NULL),
+(88, 'Saud Al Otaibi', 1, 19, 'تجربة', '2020-01-19T17:17:47.793Z', '2020-01-19T17:17:47.793Z', NULL),
+(89, 'Saud Al Otaibi', 2, 4, 'rrrrrty', '2020-01-19T19:51:30.147Z', '2020-01-19T19:51:30.147Z', NULL),
+(90, 'Saud Al Otaibi', 2, 4, 'sdgdgdg', '2020-01-19T19:52:14.635Z', '2020-01-19T19:52:14.635Z', NULL),
+(91, 'Saud Al Otaibi', 2, 1, 'dgdgdg', '2020-01-21T20:01:27.240Z', '2020-01-21T20:01:27.240Z', '2020-01-22 23:32:07'),
+(92, 'Saud Al Otaibi', 2, 1, '000000000000000', '2020-01-22T07:56:28.786Z', '2020-01-22T07:56:28.786Z', '2020-01-22 23:32:05'),
+(93, 'Saud Al Otaibi', 2, 1, '1111111111111111111111111111\n1211\n211121', '2020-01-22T07:56:44.655Z', '2020-01-22T07:56:44.655Z', '2020-01-22 23:32:10'),
+(94, 'Saud Al Otaibi', 2, 1, '54540315413212.1.200.56123132132', '2020-01-22T07:56:53.496Z', '2020-01-22T07:56:53.496Z', '2020-01-22 23:32:01');
 
 -- --------------------------------------------------------
 
@@ -240,8 +351,8 @@ INSERT INTO `project` (`id`, `name`, `start_date`, `end_date`, `status`, `manage
 (16, 'ffh', '2020-01-08', '2020-01-05', 'hfhf', '0', 'fhfhhfh', '0', '0', 'hfhff', '2020-01-11 14:43:45'),
 (17, 'vbcc', '2020-01-02', '2020-01-06', 'vbcc', '1', '4', '1', '1', 'vbcc', '2020-01-11 14:44:46'),
 (18, 'vbcc', '2020-01-02', '2020-01-06', 'vbcc', '0', 'hhh', '0', '1', 'vbcc', '2020-01-11 14:44:48'),
-(19, 'inejih dahm', '2020-01-20', '2034-07-19', 'Completed', '3', 'lll', '4444', '1111', '65665', NULL),
-(20, 'C\'est mon date', '2020-12-31', '1944-01-01', 'Archived', '2', 'gjgjgj', '0', '0', 'hlhlhl', NULL),
+(19, 'Sidi Ahmar', '2020-01-20', '2034-07-19', 'Completed', '3', 'lll', '12000', '1111', '656650', NULL),
+(20, 'C\'est mon date', '2020-12-31', '1944-01-01', 'Archived', '2', 'gjgjgj', '12000', '0', 'hlhlhl', NULL),
 (21, 'fhf', '2020-01-20', '2020-01-22', 'In Progres', '0', 'fhfh', '0', '0', 'hfhfh', '2020-01-11 19:55:26'),
 (22, 'This is a special  h', '2019-12-31', '0202-01-24', 'In Progress', '2', 'fg', '5500', '0', 'fgfg', NULL),
 (23, 'gsdgdddddd', '2020-01-21', '2020-01-12', 'On Hold', '4154', 'sgsg', '0', '0', 'sgsgsg', NULL),
@@ -249,10 +360,10 @@ INSERT INTO `project` (`id`, `name`, `start_date`, `end_date`, `status`, `manage
 (25, 'This is p90', '2020-01-06', '2020-01-06', 'Archived', 'ddgdg', 'fhfh', '0', '0', 'fhfh', NULL),
 (26, 'hdh', '2020-01-07', '2020-01-14', 'On Hold', '0', 'hdhdhdh', '0', '0', 'dhdhd', NULL),
 (27, 'sf', '2020-01-01', '2020-01-14', 'Archived', '0', 'sfsf', '24123.5', '1254560', 'fsfsfss', NULL),
-(28, '5454', '2020-01-15', '2020-01-21', 'On Hold', '5454545', '54554545', '45', '54545', '54545', NULL),
+(28, '5454', '2020-01-15', '2020-01-21', 'On Hold', '5454545', '54554545', '45', '54545', '54545', '2020-01-19 17:19:57'),
 (29, 'dgdgdgd', '2020-01-10T23:00:00.000Z', '2019-12-31T23:00:00.000Z', 'In Progress', '', 'kkk', '454', NULL, NULL, '2020-01-14 21:08:01'),
 (30, 'test saud', '2020-01-15T21:00:00.000Z', '2020-01-30T21:00:00.000Z', 'In Progress', 'mmmm', 'mmm', '0', NULL, NULL, '2020-01-14 21:08:04'),
-(31, 'Ù…Ø´Ø±ÙˆØ¹ ÙˆØ²Ø§Ø±Ø© Ø§Ù„Ø®Ø§Ø±Ø¬ÙŠØ©', '2020-01-14T21:00:00.000Z', '2020-01-24T21:00:00.000Z', 'In Progress', '', 'pp', '0', '0', NULL, NULL);
+(31, 'Ù…Ø´Ø±ÙˆØ¹ ÙˆØ²Ø§Ø±Ø© Ø§Ù„Ø®Ø§Ø±Ø¬ÙŠØ©', '2020-01-14T21:00:00.000Z', '2020-01-24T21:00:00.000Z', 'In Progress', '', 'pp', '0', '0', NULL, '2020-01-19 17:19:54');
 
 -- --------------------------------------------------------
 
@@ -277,11 +388,52 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `role_name`, `full_name`, `deleted_at`) VALUES
 (1, 'admin', 'admin', 1, 'Admin', 'Saud Al Otaibi', NULL),
 (2, 'pmanager', 'pmanager', 2, 'Project Manager', 'Mohamed Yehdhih', NULL),
-(3, 'pmanager2', 'pmanager2', 2, 'Project Manager', 'Abdoullah Ahmed', NULL);
+(3, 'pmanager2', 'pmanager2', 2, 'Project Manager', 'Abdoullah Ahmed', NULL),
+(4, 'sales', 'sales', 3, 'Sales Manager', 'Khaled Abdullah', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `visit`
+--
+
+CREATE TABLE `visit` (
+  `id` int(11) NOT NULL,
+  `client_name` varchar(150) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `contact` varchar(150) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `reason` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `manager` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `last_update` date DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `visit`
+--
+
+INSERT INTO `visit` (`id`, `client_name`, `contact`, `reason`, `manager`, `date`, `last_update`, `deleted_at`) VALUES
+(2, 'Ahmedou salem', '+2126065454', 'visit for work', 4, '2020-01-14', '2020-01-15', '2020-01-24 18:53:53'),
+(3, 'visit numero 1', 'sfsfjks sf', '1200', 4, '2020-01-14', NULL, NULL),
+(4, 'asfaf', 'afafafaf', 'الله أكبر', 4, '2020-01-14', NULL, NULL),
+(5, 'asfaf', 'afafafaf', 'afafaf', 4, '2020-01-08', NULL, NULL),
+(6, 'asfaf', 'afafafaf', 'afafaf', 4, '2020-01-08', NULL, NULL),
+(7, 'asfaf', 'afafafaf', 'afafaf', 4, '2020-01-08', NULL, NULL),
+(8, 'gjgj', 'gjgj', 'fggj', 4, '2020-01-16', NULL, NULL),
+(9, 'fhfh', 'fhfhfhfh', 'fhfh', 4, '2020-01-15', NULL, NULL),
+(10, 'dhdh', 'dhdhdh', 'dhdh', 4, '2020-01-13', NULL, NULL),
+(11, 'sgsg', 'sgsgsg', 'sgs', 4, '2020-01-21', NULL, NULL),
+(12, 'sgsg', 'sgsgsg', 'sgs', 4, '2020-01-21', NULL, '2020-01-24 19:08:42');
 
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `bid`
+--
+ALTER TABLE `bid`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `boq`
@@ -295,6 +447,12 @@ ALTER TABLE `boq`
 --
 ALTER TABLE `boq_group`
   ADD PRIMARY KEY (`Id`);
+
+--
+-- Index pour la table `deal`
+--
+ALTER TABLE `deal`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `invoice`
@@ -321,32 +479,50 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `visit`
+--
+ALTER TABLE `visit`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `bid`
+--
+ALTER TABLE `bid`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `boq`
 --
 ALTER TABLE `boq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `boq_group`
 --
 ALTER TABLE `boq_group`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `deal`
+--
+ALTER TABLE `deal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT pour la table `note`
 --
 ALTER TABLE `note`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT pour la table `project`
@@ -358,7 +534,13 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pour la table `visit`
+--
+ALTER TABLE `visit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Contraintes pour les tables déchargées
