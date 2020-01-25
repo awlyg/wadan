@@ -10,6 +10,12 @@
     "with_data": true,
     "protect": true
   },
+  "/api/projects/codes": {
+    "controller": "APIController",
+    "action": "Codes",
+    "with_data": true,
+    "protect": false
+  },
   "/api/projects/new": {
     "controller": "APIController",
     "action": "addProject",
@@ -108,6 +114,18 @@
   "/api/users/user": {
     "controller": "UserController",
     "action": "getUserById",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/users/new": {
+    "controller": "UserController",
+    "action": "addUpdateUser",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/users/update": {
+    "controller": "UserController",
+    "action": "addUpdateUser",
     "with_data": true,
     "protect": true
   },

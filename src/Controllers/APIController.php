@@ -31,6 +31,12 @@ class APIController extends BaseController
         return $this->JSONResponse(ProjectService::getAllProjects($status));
     }
 
+    // list all projects codes
+    public function Codes($request)
+    {
+        return $this->JSONResponse(ProjectService::getAllCodes(null));
+    }
+
     // add new project
     public function addProject($request) {
         if($request->method !== 'POST') {

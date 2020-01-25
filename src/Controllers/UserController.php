@@ -10,6 +10,8 @@ namespace App\Controllers;
 
 use App\Core\BaseController;
 
+use App\Core\Request;
+use App\Services\CommonService;
 use App\Services\UserService;
 
 class UserController extends BaseController
@@ -21,10 +23,12 @@ class UserController extends BaseController
         $userRole = (int)$request->data['role'];
 
         if (empty($userRole)) {
-            return $this->JSONResponse(NULL);
+            return $this->JSONResponse(CommonService::getAll('user'));
+        } else {
+            return false;
+            //return $this->JSONResponse(UserService::getAllUsers($userRole));
         }
 
-        return $this->JSONResponse(UserService::getAllUsers($userRole));
     }
 
     // list all users with specific role
@@ -37,6 +41,28 @@ class UserController extends BaseController
         }
 
         return $this->JSONResponse(UserService::getUserById($id));
+    }
+
+    public function addUpdateUser($request)
+    {
+        if ($request->method !== 'POST') {
+            return $this->JSONResponse(NULL);
+        }
+        // get the project from the request
+        $data = Request::getJsonRequest(true);
+        $roles = [];
+        // get roles
+        foreach ($data['role'] as $key => $value) {
+            if($value) {
+                $roles [] = $key;
+            }
+        }
+        $data['role'] = implode($roles, ',');
+
+        $id = CommonService::addUpdate('user', $data);
+
+        $result = isset($id) ? ['uid' => $id] : NULL;
+        return $this->JSONResponse($result);
     }
 
 }

@@ -28,6 +28,25 @@ class ProjectService
         return $projects;
     }
 
+    static function getAllCodes($status)
+    {
+        $newCodes = [];
+
+        global $db;
+        try {
+            $db->where('deleted_at', NULL, 'IS');
+            // $db->where('status', $status);
+            $codes = $db->get('project', null, ['code']);
+            foreach ($codes as $code) {
+                $newCodes[] = $code['code'];
+            }
+        } catch (\Exception $exception) {
+            Log::write($exception, $db->getLastError());
+        }
+
+        return $newCodes;
+    }
+
     // add a new project
     static function addProject($project)
     {
@@ -268,4 +287,6 @@ class ProjectService
             Log::write($exception, $db->getLastError());
         }
     }
+
+
 }
