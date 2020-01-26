@@ -100,5 +100,24 @@ class OrderController extends BaseController
             return $this->JSONResponse(NULL);
         }
     }
-    
+
+    // soft delete an order
+    public function deleteSupplier($request)
+    {
+
+        $supplierID = (int)$request->data['id'];
+
+        // todo change the method to delete
+        if ($request->method !== 'GET' || empty($supplierID)) {
+            return $this->JSONResponse(NULL);
+        }
+
+        $deleted = CommonService::deleteItem($supplierID, 'supplier');
+
+        if ($deleted) {
+            return $this->JSONResponse(['id' => $supplierID]);
+        } else {
+            return $this->JSONResponse(NULL);
+        }
+    }
 }

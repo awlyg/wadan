@@ -267,6 +267,12 @@
     "with_data": true,
     "protect": true
   },
+  "/api/suppliers/delete": {
+    "controller": "OrderController",
+    "action": "deleteSupplier",
+    "with_data": true,
+    "protect": true
+  },
   "/api/orders/all": {
     "controller": "OrderController",
     "action": "orderIndex",
