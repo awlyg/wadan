@@ -20,13 +20,12 @@ class UserController extends BaseController
     // list all users with specific role
     public function Index($request)
     {
-        $userRole = (int)$request->data['role'];
+        $userRole = $request->data['role'];
 
-        if (empty($userRole)) {
+        if (!$userRole || $userRole === 'all') {
             return $this->JSONResponse(CommonService::getAll('user'));
         } else {
-            return false;
-            //return $this->JSONResponse(UserService::getAllUsers($userRole));
+            return $this->JSONResponse(UserService::getAllUsers($userRole));
         }
 
     }

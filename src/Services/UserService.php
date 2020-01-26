@@ -13,14 +13,14 @@ class UserService
     // get all project notes
     public static function getAllUsers($role)
     {
-        if (!$role || !is_numeric($role)) {
+        if (!$role) {
             return false;
         }
 
         $users = null;
         global $db;
         $db->where('deleted_at', NULL, 'IS');
-        $db->where('role', $role);
+        $db->where('role', '%' . $role . '%', 'LIKE');
 
         try {
             $users = $db->get('user');

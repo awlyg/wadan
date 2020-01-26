@@ -59,8 +59,7 @@ class AuthHelper
         $payload = [
             'iat' => time(),
             'user_id' => $user['id'],
-            'full_name' => $user['full_name'],
-            'role_name' => $user['role_name'],
+            'full_name' => $user['name'],
             'role' => $user['role'],
             'exp' => time() + (3600*24),
             'iss' => 'localhost',

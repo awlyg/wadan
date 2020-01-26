@@ -109,7 +109,7 @@
     "controller": "UserController",
     "action": "Index",
     "with_data": true,
-    "protect": true
+    "protect": false
   },
   "/api/users/user": {
     "controller": "UserController",
@@ -216,6 +216,84 @@
   "/api/sales/visits/all": {
     "controller": "SaleController",
     "action": "getAllVisits",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/tasks/all": {
+    "controller": "TaskController",
+    "action": "Index",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/tasks/task": {
+    "controller": "TaskController",
+    "action": "getTaskById",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/tasks/new": {
+    "controller": "TaskController",
+    "action": "addUpdateTask",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/tasks/update": {
+    "controller": "TaskController",
+    "action": "addUpdateTask",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/suppliers/all": {
+    "controller": "OrderController",
+    "action": "SupplierIndex",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/suppliers/supplier": {
+    "controller": "OrderController",
+    "action": "getSupplierById",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/suppliers/new": {
+    "controller": "OrderController",
+    "action": "addUpdateSupplier",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/suppliers/update": {
+    "controller": "OrderController",
+    "action": "addUpdateSupplier",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/orders/all": {
+    "controller": "OrderController",
+    "action": "orderIndex",
+    "with_data": true,
+    "protect": false
+  },
+  "/api/orders/order": {
+    "controller": "OrderController",
+    "action": "getOrderById",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/orders/new": {
+    "controller": "OrderController",
+    "action": "addUpdateOrder",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/orders/delete": {
+    "controller": "OrderController",
+    "action": "deleteOrder",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/orders/update": {
+    "controller": "OrderController",
+    "action": "addUpdateOrder",
     "with_data": true,
     "protect": true
   }
