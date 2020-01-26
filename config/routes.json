@@ -302,5 +302,23 @@
     "action": "addUpdateOrder",
     "with_data": true,
     "protect": true
+  },
+  "/api/orders/items/new": {
+    "controller": "OrderController",
+    "action": "newItem",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/orders/items/delete": {
+    "controller": "OrderController",
+    "action": "deleteItem",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/orders/items/all": {
+    "controller": "OrderController",
+    "action": "getAllItems",
+    "with_data": true,
+    "protect": false
   }
 }

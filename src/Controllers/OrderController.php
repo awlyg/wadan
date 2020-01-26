@@ -120,4 +120,13 @@ class OrderController extends BaseController
             return $this->JSONResponse(NULL);
         }
     }
+
+
+    // list all suppliers with specific role
+    public function getAllItems($request)
+    {
+        $orderID = (int)$request->data['id'];
+
+        return $this->JSONResponse(CommonService::getAll('purchase_item', ['order_id' => $orderID]));
+    }
 }
