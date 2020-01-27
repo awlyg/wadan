@@ -115,7 +115,7 @@
     "controller": "UserController",
     "action": "getUserById",
     "with_data": true,
-    "protect": true
+    "protect": false
   },
   "/api/users/new": {
     "controller": "UserController",
@@ -126,6 +126,12 @@
   "/api/users/update": {
     "controller": "UserController",
     "action": "addUpdateUser",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/users/delete": {
+    "controller": "UserController",
+    "action": "deleteUser",
     "with_data": true,
     "protect": true
   },
