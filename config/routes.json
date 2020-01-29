@@ -311,7 +311,13 @@
   },
   "/api/orders/items/new": {
     "controller": "OrderController",
-    "action": "newItem",
+    "action": "addUpdateItem",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/orders/items/update": {
+    "controller": "OrderController",
+    "action": "addUpdateItem",
     "with_data": true,
     "protect": true
   },

@@ -129,4 +129,18 @@ class OrderController extends BaseController
 
         return $this->JSONResponse(CommonService::getAll('purchase_item', ['order_id' => $orderID]));
     }
+
+    public function addUpdateItem($request)
+    {
+        if ($request->method !== 'POST') {
+            return $this->JSONResponse(NULL);
+        }
+        // get the project from the request
+        $data = Request::getJsonRequest(true);
+
+        $id = CommonService::addUpdate('purchase_item', $data);
+
+        $result = isset($id) ? ['pid' => $id] : NULL;
+        return $this->JSONResponse($result);
+    }
 }
