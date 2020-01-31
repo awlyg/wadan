@@ -130,6 +130,14 @@ class OrderController extends BaseController
         return $this->JSONResponse(CommonService::getAll('purchase_item', ['order_id' => $orderID]));
     }
 
+    // list all suppliers with specific role
+    public function getAllTracks($request)
+    {
+        $trackID = (int)$request->data['id'];
+
+        return $this->JSONResponse(CommonService::getAll('payment_tracking', ['order_id' => $trackID]));
+    }
+
     public function addUpdateItem($request)
     {
         if ($request->method !== 'POST') {
@@ -141,6 +149,20 @@ class OrderController extends BaseController
         $id = CommonService::addUpdate('purchase_item', $data);
 
         $result = isset($id) ? ['pid' => $id] : NULL;
+        return $this->JSONResponse($result);
+    }
+
+    public function addUpdateTrack($request)
+    {
+        if ($request->method !== 'POST') {
+            return $this->JSONResponse(NULL);
+        }
+        // get the project from the request
+        $data = Request::getJsonRequest(true);
+
+        $id = CommonService::addUpdate('payment_tracking', $data);
+
+        $result = isset($id) ? ['tid' => $id] : NULL;
         return $this->JSONResponse($result);
     }
 }

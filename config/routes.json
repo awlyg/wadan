@@ -332,5 +332,23 @@
     "action": "getAllItems",
     "with_data": true,
     "protect": false
+  },
+  "/api/orders/tracks": {
+    "controller": "OrderController",
+    "action": "getAllTracks",
+    "with_data": true,
+    "protect": false
+  },
+  "/api/orders/tracks/update": {
+    "controller": "OrderController",
+    "action": "addUpdateTrack",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/orders/tracks/new": {
+    "controller": "OrderController",
+    "action": "addUpdateTrack",
+    "with_data": true,
+    "protect": true
   }
 }
