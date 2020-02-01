@@ -163,6 +163,7 @@ class OrderController extends BaseController
             $data['received_date'] = null;
             $data['status'] = 'initial';
         }
+
         $id = CommonService::addUpdate('purchase_item', $data);
 
         $result = isset($id) ? ['pid' => $id] : NULL;
