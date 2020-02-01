@@ -125,9 +125,19 @@ class OrderController extends BaseController
     // list all suppliers with specific role
     public function getAllItems($request)
     {
-        $orderID = (int)$request->data['id'];
 
-        return $this->JSONResponse(CommonService::getAll('purchase_item', ['order_id' => $orderID]));
+        $data = [];
+        $orderID = (int)$request->data['id'];
+        $received = $request->data['received'];
+
+        if($orderID && !empty($orderID)) {
+            $data['order_id'] = $orderID;
+        }
+        if ($received && !empty($received)) {
+             $data['received'] = $received;
+        }
+
+        return $this->JSONResponse(CommonService::getAll('purchase_item', $data));
     }
 
     // list all suppliers with specific role
@@ -143,9 +153,16 @@ class OrderController extends BaseController
         if ($request->method !== 'POST') {
             return $this->JSONResponse(NULL);
         }
+
         // get the project from the request
         $data = Request::getJsonRequest(true);
-
+        if ($data['id'] && $data['received'] === 1) {
+            $data['received_date'] = date("Y-m-d H:i:s");
+            $data['status'] = 'Check In';
+        } elseif($data['id'] && $data['received'] === 0) {
+            $data['received_date'] = null;
+            $data['status'] = 'initial';
+        }
         $id = CommonService::addUpdate('purchase_item', $data);
 
         $result = isset($id) ? ['pid' => $id] : NULL;

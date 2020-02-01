@@ -9,16 +9,18 @@ class CommonService
 {
 
     // this function list projects
-    static function getAll($tableName, $rules=null)
+    static function getAll($tableName, $rules = null)
     {
         $data = [];
         global $db;
 
         // rules
-        if($rules && count($rules) > 0) {
+        if ($rules && count($rules) > 0) {
             foreach ($rules as $key => $value) {
                 // ['order_id' => $orderID]
-                $db->where($key, $value);
+                if ($value && $value !== 0) {
+                    $db->where($key, $value);
+                }
             }
         }
 

@@ -331,7 +331,7 @@
     "controller": "OrderController",
     "action": "getAllItems",
     "with_data": true,
-    "protect": false
+    "protect": true
   },
   "/api/orders/tracks": {
     "controller": "OrderController",
