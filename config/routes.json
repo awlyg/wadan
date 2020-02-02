@@ -249,6 +249,30 @@
     "with_data": true,
     "protect": true
   },
+  "/api/vouchers/all": {
+    "controller": "VoucherController",
+    "action": "Index",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/vouchers/voucher": {
+    "controller": "VoucherController",
+    "action": "getVoucherById",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/vouchers/new": {
+    "controller": "VoucherController",
+    "action": "addUpdateVoucher",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/vouchers/update": {
+    "controller": "VoucherController",
+    "action": "addUpdateVoucher",
+    "with_data": true,
+    "protect": true
+  },
   "/api/suppliers/all": {
     "controller": "OrderController",
     "action": "SupplierIndex",
