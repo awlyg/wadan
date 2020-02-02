@@ -158,10 +158,8 @@ class OrderController extends BaseController
         $data = Request::getJsonRequest(true);
         if ($data['id'] && $data['received'] === 1) {
             $data['received_date'] = date("Y-m-d H:i:s");
-            $data['status'] = 'Check In';
         } elseif($data['id'] && $data['received'] === 0) {
             $data['received_date'] = null;
-            $data['status'] = 'initial';
         }
 
         $id = CommonService::addUpdate('purchase_item', $data);
