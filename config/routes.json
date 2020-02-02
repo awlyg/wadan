@@ -350,5 +350,23 @@
     "action": "addUpdateTrack",
     "with_data": true,
     "protect": true
+  },
+  "/api/beneficiaries/all": {
+    "controller": "OrderController",
+    "action": "beneficiaryIndex",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/beneficiaries/update": {
+    "controller": "OrderController",
+    "action": "addUpdateBeneficiary",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/beneficiaries/new": {
+    "controller": "OrderController",
+    "action": "addUpdateBeneficiary",
+    "with_data": true,
+    "protect": true
   }
 }
