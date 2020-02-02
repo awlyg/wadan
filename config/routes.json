@@ -273,6 +273,12 @@
     "with_data": true,
     "protect": true
   },
+  "/api/vouchers/delete": {
+    "controller": "VoucherController",
+    "action": "deleteVoucher",
+    "with_data": true,
+    "protect": true
+  },
   "/api/suppliers/all": {
     "controller": "OrderController",
     "action": "SupplierIndex",
@@ -390,6 +396,12 @@
   "/api/beneficiaries/new": {
     "controller": "OrderController",
     "action": "addUpdateBeneficiary",
+    "with_data": true,
+    "protect": true
+  },
+  "/api/beneficiaries/beneficiary": {
+    "controller": "VoucherController",
+    "action": "getBeneficiaryById",
     "with_data": true,
     "protect": true
   }
