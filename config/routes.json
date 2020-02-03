@@ -4,6 +4,11 @@
     "action": "Index",
     "with_data": "false"
   },
+  "/files/pdf/document": {
+    "controller": "DefaultController",
+    "action": "printOrder",
+    "with_data": "false"
+  },
   "/api/projects/all": {
     "controller": "APIController",
     "action": "Index",
