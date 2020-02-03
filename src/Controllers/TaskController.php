@@ -48,4 +48,24 @@ class TaskController extends BaseController
         return $this->JSONResponse($result);
     }
 
+    // soft delete an order
+    public function deleteTask($request)
+    {
+
+        $taskID = (int)$request->data['id'];
+
+        // todo change the method to delete
+        if ($request->method !== 'GET' || empty($taskID)) {
+            return $this->JSONResponse(NULL);
+        }
+
+        $deleted = CommonService::deleteItem($taskID, 'task');
+
+        if ($deleted) {
+            return $this->JSONResponse(['id' => $taskID]);
+        } else {
+            return $this->JSONResponse(NULL);
+        }
+    }
+
 }

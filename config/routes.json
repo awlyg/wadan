@@ -249,6 +249,12 @@
     "with_data": true,
     "protect": true
   },
+  "/api/tasks/delete": {
+    "controller": "TaskController",
+    "action": "deleteTask",
+    "with_data": true,
+    "protect": true
+  },
   "/api/vouchers/all": {
     "controller": "VoucherController",
     "action": "Index",

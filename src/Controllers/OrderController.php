@@ -134,7 +134,12 @@ class OrderController extends BaseController
         $data = [];
         $orderID = (int)$request->data['id'];
         $received = $request->data['received'];
+        $projectID = $request->data['pid'];
 
+        if ($projectID && !empty($projectID)) {
+            $data['project'] = $projectID;
+            $data['status'] = 'Check Out';
+        }
         if($orderID && !empty($orderID)) {
             $data['order_id'] = $orderID;
         }
