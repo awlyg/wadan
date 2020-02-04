@@ -3,6 +3,7 @@ namespace App\Controllers;
 use App\Core;
 use App\Core\BaseController;
 use App\Model\QuoteManager;
+use Mpdf\Mpdf;
 
 class DefaultController extends BaseController
 {
@@ -20,6 +21,17 @@ class DefaultController extends BaseController
         header("location: /front");
     }
 
+    public function Test() {
+        $mpdf = new Mpdf();
+
+
+
+
+        $html = '';
+
+        $mpdf->WriteHTML($html);
+        $mpdf->Output();
+    }
 
     //render site hompage
     public function TodayDate(){
