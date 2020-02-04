@@ -21,16 +21,16 @@ class DefaultController extends BaseController
         header("location: /front");
     }
 
-    public function Test() {
+
+    //print hompage
+    public function printOrder()
+    {
         $mpdf = new Mpdf();
 
-
-
-
-        $html = '';
-
-        $mpdf->WriteHTML($html);
+        $mpdf->WriteHTML('<h1>Hello world!</h1>');
         $mpdf->Output();
+
+        // header("location: /front");
     }
 
     //render site hompage

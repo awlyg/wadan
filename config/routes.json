@@ -4,9 +4,9 @@
     "action": "Index",
     "with_data": "false"
   },
-  "/test": {
+  "/files/pdf/document": {
     "controller": "DefaultController",
-    "action": "Test",
+    "action": "printOrder",
     "with_data": "false"
   },
   "/api/projects/all": {
