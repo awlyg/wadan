@@ -9,6 +9,11 @@
     "action": "printOrder",
     "with_data": "false"
   },
+  "/files/pdf/voucher": {
+    "controller": "DefaultController",
+    "action": "printVoucher",
+    "with_data": "true"
+  },
   "/api/projects/all": {
     "controller": "APIController",
     "action": "Index",

@@ -1,8 +1,11 @@
 <?php
+
 namespace App\Controllers;
+
 use App\Core;
 use App\Core\BaseController;
 use App\Model\QuoteManager;
+use App\Services\CommonService;
 use Mpdf\Mpdf;
 
 class DefaultController extends BaseController
@@ -33,57 +36,79 @@ class DefaultController extends BaseController
         // header("location: /front");
     }
 
+    public function printVoucher($request)
+    {
+
+        $id = $request->data['id'];
+        if ($id && !empty($id)) {
+            $voucher = CommonService::getItemById($id, 'voucher');
+            if ($voucher && $voucher['beneficiary']) {
+                $beneficiary = CommonService::getItemById($voucher['beneficiary'],'beneficiary');
+                $html = "<table style='width:100%; border:1px solid;'><tr><th>Beneficiary Name</th><td>{$beneficiary['name']}</td></tr></table>";
+                $mpdf = new Mpdf();
+                $mpdf->WriteHTML($html);
+                $mpdf->Output();
+            }
+        }
+    }
+
     //render site hompage
-    public function TodayDate(){
+    public function TodayDate()
+    {
         return $this->render('home');
     }
 
     //render site english hompage for SEO
-    public function EnglishVersion(){
+    public function EnglishVersion()
+    {
         $data = ['path_en' => '/en', 'path_ar' => '/'];
         $_SESSION['lang'] = 'en';
         return $this->render('basic/hijri', $data);
     }
 
     #to render login page
-    public function Login(){
+    public function Login()
+    {
         $this->render("login/login");
     }
-    public function Logout(){
+
+    public function Logout()
+    {
         unset($_SESSION['user_logged_in']);
         header("location: /login");
     }
 
-    public function SaveData($request){
+    public function SaveData($request)
+    {
         global $db;
 
         $db->where('id', 1);
 
         $quote = $db->update('quotes', $request->data);
 
-        if($quote){
+        if ($quote) {
             $_SESSION['system_message'] = 'Successfully saved !';
             header("location: /hijricpanel");
         }
     }
 
-    private function isAuth(){
+    private function isAuth()
+    {
         return $_SESSION['user_logged_in'] ? true : false;
     }
 
 
-    public function LoginHome($request = null){
+    public function LoginHome($request = null)
+    {
         global $db;
 
         //check if user is looged in
-        if(empty($request->data)) {
-            if(!$this->isAuth()){
+        if (empty($request->data)) {
+            if (!$this->isAuth()) {
                 $_SESSION['system_message'] = 'you\'ve to logged in first !';
                 header("location: /login");
             }
-        }
-
-        else {
+        } else {
             $user = $request->data['username'];
             $pass = $request->data['password'];
 
@@ -92,10 +117,9 @@ class DefaultController extends BaseController
 
             $user = $db->getOne("users");
 
-            if($user){
+            if ($user) {
                 $_SESSION['user_logged_in'] = true;
-            }
-            else {
+            } else {
                 $_SESSION['system_message'] = 'error login or password !';
                 header("location: /login");
             }
@@ -106,34 +130,40 @@ class DefaultController extends BaseController
     }
 
     #to render register page
-    public function Register(){
+    public function Register()
+    {
         $this->render("login/register");
     }
 
     #non existed  routes
-    public function NotFound(){
+    public function NotFound()
+    {
         $basePath = BASE_PATH;
 
         return '404 not found';
     }
 
     #to render the hijri calendar page
-    public function hijriCalendar($data){
+    public function hijriCalendar($data)
+    {
         $this->render('basic/hijri', $data);
     }
 
     #to render the georgian calendar page
-    public function georgianCalendar($data){
+    public function georgianCalendar($data)
+    {
         $this->render('basic/georgian', $data);
     }
 
     #to render the solar calendar page
-    public function solarCalendar(){
+    public function solarCalendar()
+    {
         $this->render('basic/solar');
     }
 
     #render ramadan page
-    public function Ramadan(){
+    public function Ramadan()
+    {
         $data = [];
         $quoteManager = new QuoteManager();
 
@@ -143,11 +173,14 @@ class DefaultController extends BaseController
     }
 
     #render converter page
-    public function Converter(){
+    public function Converter()
+    {
         $this->render('basic/converter');
     }
+
     #render the months page
-    public function Months(){
+    public function Months()
+    {
         $this->render('basic/months');
     }
 
@@ -164,10 +197,10 @@ class DefaultController extends BaseController
         $mg = ($this->c_language == 'ar') ? 'M' : 'F';
         $mh = ($this->c_language == 'ar') ? '_M' : '_F';
 
-        for($i=1; $i<= 12; $i++){
-            $dateTime->setDate(2019, $i ,1);
+        for ($i = 1; $i <= 12; $i++) {
+            $dateTime->setDate(2019, $i, 1);
             $d_georgian = $dateTime->format($mg);
-            $dateTime->setDateHijri(1441, $i ,1);
+            $dateTime->setDateHijri(1441, $i, 1);
             $d_hijri = $dateTime->format($mh);
 
             $months [$d_georgian] = $i;
@@ -183,10 +216,10 @@ class DefaultController extends BaseController
 
         list($day, $month, $year) = $dayParts;
         $month = $months[$month];
-        $day = (int) $day;
-        $year = (int) $year;
+        $day = (int)$day;
+        $year = (int)$year;
 
-        if(!isset($month) || $year == 0 || $day == 0) {
+        if (!isset($month) || $year == 0 || $day == 0) {
             header("location: /");
         }
 
@@ -198,17 +231,15 @@ class DefaultController extends BaseController
         ];
 
 
-
-        if($this->c_language == 'ar') {
+        if ($this->c_language == 'ar') {
             $path[0] = Core::mapingRoute('/' . $path[0]);
 
             $dateT = new \hijri\datetime(null, null, 'en', $calendar);
 
-            if($type == 'hijri'){
+            if ($type == 'hijri') {
                 $dateT->setDateHijri($year, $month, $day);
                 $path[3] = $dateT->format('_F');
-            }
-            elseif($type == 'georgian') {
+            } elseif ($type == 'georgian') {
                 $dateT->setDate($year, $month, $day);
                 $path[3] = $dateT->format('F');
             }
@@ -217,18 +248,15 @@ class DefaultController extends BaseController
             $full_date['path_en'] = $path_en;
 
             self::render('basic/single-date', $full_date);
-        }
-
-        else {
+        } else {
             $path[0] = Core::mapingRouteReverse('/' . $path[0]);
 
             $dateT = new \hijri\datetime(null, null, 'ar', $calendar);
 
-            if($type == 'hijri'){
+            if ($type == 'hijri') {
                 $dateT->setDateHijri($year, $month, $day);
                 $path[3] = $dateT->format('_F');
-            }
-            elseif($type == 'georgian') {
+            } elseif ($type == 'georgian') {
                 $dateT->setDate($year, $month, $day);
                 $path[3] = $dateT->format('M');
             }
