@@ -11,25 +11,23 @@ class BaseController
         ob_start();
         if (!empty($filename))
         {
-
-            $lang = self::getLanguageData();
-            $days = self::getLanguageDays();
-            $data = $params;
-            $direction = (\App\Core::getCurrentLanguage() == 'ar') ? 'rtl' : 'ltr';
             $request = new Request();
 
+            $data = $params;
             if(file_exists(DIR_BASE . 'pages/' . $filename . '.html.php')){
                 require_once DIR_BASE . 'pages/' . $filename . '.html.php';
                 $content = ob_get_clean();
                 ob_end_flush();
             }
-            else {
-                $home = BASE_PATH;
-                header("location: $home");
-            }
+            ob_start();
 
             // require the default layout
-            require_once DIR_BASE . 'pages/layout/template.html.php';
+            require_once DIR_BASE . 'pages/layout/pdf/template.html.php';
+
+            $rendering = ob_get_clean();
+            ob_end_flush();
+
+            return $rendering;
         }
     }
 

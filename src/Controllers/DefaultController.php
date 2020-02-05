@@ -26,13 +26,33 @@ class DefaultController extends BaseController
 
 
     //print hompage
-    public function printOrder()
+    public function printOrder($request)
     {
-        $mpdf = new Mpdf();
 
-        $mpdf->WriteHTML('<h1>Hello world!</h1>');
-        $mpdf->Output();
+        $id = $request->data['id'];
+        if ($id && !empty($id)) {
+            $order = CommonService::getItemById($id, 'purchase_order');
+            $purchases = CommonService::getAll('purchase_item', ['order_id' => $order['id']]);
+            $vendor = CommonService::getItemById($order['vendor'], 'supplier');
+            $approvedBy = CommonService::getItemById($order['approved_by'], 'user');
 
+            if ($order) {
+
+                $html = self::render('pdf/order-print', [
+                    'order' => $order,
+                    'items' => $purchases,
+                    'approvedBy' => $approvedBy,
+                    'vendor' => $vendor]);
+
+                // return $html;
+                $mpdf = new Mpdf();
+                $mpdf->SetHTMLHeader($order['date']);
+                $mpdf->setFooter('{PAGENO}');
+
+                $mpdf->WriteHTML($html);
+                $mpdf->Output();
+            }
+        }
         // header("location: /front");
     }
 
