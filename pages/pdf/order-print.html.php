@@ -156,7 +156,7 @@ die();*/
         ?>
         <tr>
             <td><?= $item['id']; ?></td>
-            <td><?= 'PO-00' . $item['id']; ?></td>
+            <td><?= $item['part_code'] ?></td>
             <td><?= $item['description']; ?></td>
             <td><?= $item['quantity']; ?></td>
             <td><?= $item['rate']; ?></td>

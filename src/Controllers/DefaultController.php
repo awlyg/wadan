@@ -28,7 +28,6 @@ class DefaultController extends BaseController
     //print hompage
     public function printOrder($request)
     {
-
         $id = $request->data['id'];
         if ($id && !empty($id)) {
             $order = CommonService::getItemById($id, 'purchase_order');
@@ -48,6 +47,7 @@ class DefaultController extends BaseController
                 $mpdf = new Mpdf();
                 $mpdf->SetHTMLHeader($order['date']);
                 $mpdf->setFooter('{PAGENO}');
+                header('Content-Type: application/pdf');
 
                 $mpdf->WriteHTML($html);
                 $mpdf->Output();
@@ -64,8 +64,18 @@ class DefaultController extends BaseController
             $voucher = CommonService::getItemById($id, 'voucher');
             if ($voucher && $voucher['beneficiary']) {
                 $beneficiary = CommonService::getItemById($voucher['beneficiary'],'beneficiary');
-                $html = "<table style='width:100%; border:1px solid;'><tr><th>Beneficiary Name</th><td>{$beneficiary['name']}</td></tr></table>";
+
+                $html = self::render('pdf/voucher-print', [
+                    'voucher' => $voucher,
+                    'beneficiary' => $beneficiary,
+                ]);
+
+                // return $html;
                 $mpdf = new Mpdf();
+                $mpdf->SetHTMLHeader($voucher['date']);
+                $mpdf->setFooter('{PAGENO}');
+                header('Content-Type: application/pdf');
+
                 $mpdf->WriteHTML($html);
                 $mpdf->Output();
             }

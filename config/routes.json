@@ -9,7 +9,7 @@
     "action": "printOrder",
     "with_data": "true"
   },
-  "/files/pdf/voucher": {
+  "/files/pdf/voucher.pdf": {
     "controller": "DefaultController",
     "action": "printVoucher",
     "with_data": "true"
