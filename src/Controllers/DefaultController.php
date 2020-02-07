@@ -28,6 +28,8 @@ class DefaultController extends BaseController
     //print hompage
     public function printOrder($request)
     {
+        ini_set('memory_limit', -1);
+
         $id = $request->data['id'];
         if ($id && !empty($id)) {
             $order = CommonService::getItemById($id, 'purchase_order');
@@ -44,13 +46,21 @@ class DefaultController extends BaseController
                     'vendor' => $vendor]);
 
                 // return $html;
-                $mpdf = new Mpdf();
-                $mpdf->SetHTMLHeader($order['date']);
-                $mpdf->setFooter('{PAGENO}');
-                header('Content-Type: application/pdf');
 
-                $mpdf->WriteHTML($html);
-                $mpdf->Output();
+
+                try{
+                    $mpdf = new Mpdf(['debug' => true, 'allow_output_buffering' => true]);
+
+                    $mpdf->SetHTMLHeader($order['date']);
+                    $mpdf->setFooter('{PAGENO}');
+                    header('Content-Type: application/pdf');
+
+                    $mpdf->WriteHTML($html);
+                    $mpdf->Output();
+                } catch (\Exception $exception) {
+                    echo  $exception->getMessage();
+                }
+
             }
         }
         // header("location: /front");
