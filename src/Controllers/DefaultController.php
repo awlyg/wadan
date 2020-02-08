@@ -49,7 +49,7 @@ class DefaultController extends BaseController
 
 
                 try{
-                    $mpdf = new Mpdf(['debug' => true, 'allow_output_buffering' => true]);
+                    $mpdf = new Mpdf();
 
                     $mpdf->SetHTMLHeader($order['date']);
                     $mpdf->setFooter('{PAGENO}');
@@ -68,6 +68,7 @@ class DefaultController extends BaseController
 
     public function printVoucher($request)
     {
+        ini_set('memory_limit', -1);
 
         $id = $request->data['id'];
         if ($id && !empty($id)) {
