@@ -60,6 +60,18 @@ die();*/
             border: 1px solid black;
         }
 
+        .items-head th {
+            background: #a4b939;
+            text-transform: uppercase;
+        }
+        .terms-title {
+            text-transform: uppercase;
+        }
+
+        .items th {
+            text-transform: uppercase;
+        }
+
         td, th {
             padding: 10px;
             font-size: 15px;
@@ -77,21 +89,19 @@ die();*/
             font-weight: bold;
         }
 
-        .company,
-        .ship_to {
-            border: 2px solid rgb(194, 194, 194);
-        }
-
         .company div,
         .ship_to div {
             padding: 10px;
-            color: #adacac;
             font-weight: bold;
             font-size: 18px;
+            background: #a4b939;
+            text-transform: uppercase;
+            color: black;
         }
 
         .company p,
         .ship_to p {
+            margin: 0;
             padding: 5px;
         }
 
@@ -128,7 +138,6 @@ die();*/
 <columns column-count="2" vAlign="J" column-gap="7"/>
 <div class="company">
     <div>Company</div>
-    <hr>
     <p>
         <?= isset($vendor) && !empty($vendor) ? 'Name: ' . $vendor['name'] . '<br />' . 'Mob: ' . $vendor['phone'] : '-'; ?>
     </p>
@@ -136,13 +145,12 @@ die();*/
 <columnbreak/>
 <div class="ship_to">
     <div>Ship To</div>
-    <hr>
     <p><?= $order['ship_to'] ?></p>
 </div>
 <columns column-count="1" vAlign="J" column-gap="7"/>
 
 <table class="items">
-    <tr>
+    <tr class="items-head">
         <th width="10%">ID</th>
         <th width="15%">Part No.</th>
         <th width="35%">Description</th>
@@ -185,7 +193,7 @@ die();*/
     </tfoot>
 </table>
 
-<p><b>Terms & Conditions</b></p>
+<p class="terms-title"><b>Terms & Conditions</b></p>
 <div class="term-cond">
     <?= $order['terms']; ?>
 </div>
