@@ -63,6 +63,7 @@ die();*/
 
         .items th {
             width: 30%;
+            text-transform: uppercase;
         }
         .items td {
             width: 70%;
@@ -79,7 +80,7 @@ die();*/
 <table style="width: 100%;clear: both;">
     <tr>
         <td style="width: 70%;padding-left: 0">
-            <h2>Payment Request</h2>
+            <h2>PAYMENT REQUEST</h2>
         </td>
         <td style="width: 30%;">
             <span class="num"><b>NO:</b> 00<?= $voucher['id']; ?></span>

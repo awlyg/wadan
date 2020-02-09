@@ -49,14 +49,14 @@ class DefaultController extends BaseController
 
 
                 try{
+                    header('Content-Type: application/pdf');
                     $mpdf = new Mpdf();
-
                     $mpdf->SetHTMLHeader($order['date']);
                     $mpdf->setFooter('{PAGENO}');
-                    header('Content-Type: application/pdf');
+                    $mpdf->setTitle('Purchase order');
 
                     $mpdf->WriteHTML($html);
-                    $mpdf->Output();
+                    $mpdf->Output('order-' . $order['id'] . '-' . $order['date'] . '.pdf', 'I');
                 } catch (\Exception $exception) {
                     echo  $exception->getMessage();
                 }

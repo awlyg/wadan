@@ -127,7 +127,7 @@ die();*/
 <table style="width: 100%;clear: both;">
     <tr>
         <td style="width: 70%;padding-left: 0">
-            <h2>Purchase Order</h2>
+            <h2>PURCHASE ORDER</h2>
         </td>
         <td style="width: 30%;">
             <span class="date"><b>Date:</b> <?= $order['date'] ?></span><br/>
