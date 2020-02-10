@@ -47,7 +47,7 @@ class SaleController extends BaseController
             return $this->JSONResponse(NULL);
         }
 
-        $deleted = CommonService::deleteItem($bidID, 'Bid');
+        $deleted = CommonService::deleteItem($bidID, 'bid');
 
         if ($deleted) {
             return $this->JSONResponse(['id' => $bidID]);
@@ -67,7 +67,7 @@ class SaleController extends BaseController
             return $this->JSONResponse(NULL);
         }
 
-        $deleted = CommonService::deleteItem($visitID, 'Visit');
+        $deleted = CommonService::deleteItem($visitID, 'visit');
 
         if ($deleted) {
             return $this->JSONResponse(['id' => $visitID]);
@@ -86,8 +86,9 @@ class SaleController extends BaseController
         if ($request->method !== 'GET' || empty($dealID)) {
             return $this->JSONResponse(NULL);
         }
+        //ff
 
-        $deleted = CommonService::deleteItem($dealID, 'Deal');
+        $deleted = CommonService::deleteItem($dealID, 'deal');
 
         if ($deleted) {
             return $this->JSONResponse(['id' => $dealID]);
