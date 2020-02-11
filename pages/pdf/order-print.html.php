@@ -167,8 +167,8 @@ die();*/
             <td><?= $item['part_code'] ?></td>
             <td><?= $item['description']; ?></td>
             <td><?= $item['quantity']; ?></td>
-            <td><?= $item['rate']; ?></td>
-            <td><?= $item['quantity'] * $item['rate'];; ?></td>
+            <td><?= number_format($item['rate']); ?></td>
+            <td><?= number_format($item['quantity'] * $item['rate']); ?></td>
         </tr>
         <?php
     }
@@ -179,16 +179,16 @@ die();*/
     </tr>
     <tr>
         <th colspan="5" class="sub-total">subtotale</th>
-        <td><?= ($total + $vat) ?></td>
+        <td><?= number_format(($total + $vat)) ?></td>
     </tr>
     <tr>
         <th colspan="5" class="vat">vat 5%</th>
-        <td><?= $vat ?></td>
+        <td><?= number_format($vat) ?></td>
     </tr>
     <tfoot>
     <tr>
         <th colspan="5" class="total">Grand total</th>
-        <td class="total-value"><span class="currency"><?= $order['currency'] ?></span><br/><?= $total ?></td>
+        <td class="total-value"><span class="currency"><?= $order['currency'] ?></span><br/><?= number_format($total) ?></td>
     </tr>
     </tfoot>
 </table>
