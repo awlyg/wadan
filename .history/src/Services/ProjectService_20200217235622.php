@@ -269,7 +269,10 @@ class ProjectService
             $groupsIDs = [];
             $newGroups = [];
             foreach ($groups as $group) {
-                $groupsIDs [] = $group['Id'];
+                $groupsIDs [] = $group['id'];
+                if($group['id'] === 0) {
+                    $group['name'] = 'No Group';
+                }
                 $newGroups [] = ['id' => $group['Id'], 'name' => $group['name']];
             }
 

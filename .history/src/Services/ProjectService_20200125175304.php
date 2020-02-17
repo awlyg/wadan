@@ -274,7 +274,7 @@ class ProjectService
             }
 
             if (count($groupsIDs) > 0) {
-                $db->where('project_id', $pid);
+                $db->where('group_id', $groupsIDs, 'IN');
                 $items = $db->get('boq');
             } else {
                 $newGroups = null;
