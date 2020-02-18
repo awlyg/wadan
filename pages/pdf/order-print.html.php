@@ -167,8 +167,8 @@ die();*/
             <td><?= $item['part_code'] ?></td>
             <td><?= $item['description']; ?></td>
             <td><?= $item['quantity']; ?></td>
-            <td><?= number_format($item['rate']); ?></td>
-            <td><?= number_format($item['quantity'] * $item['rate']); ?></td>
+            <td><?= number_format((float)$item['rate'], 2, '.', ''); ?></td>
+            <td><?= number_format((float)($item['quantity'] * $item['rate']), 2, '.', ''); ?></td>
         </tr>
         <?php
     }

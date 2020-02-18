@@ -268,13 +268,17 @@ class ProjectService
 
             $groupsIDs = [];
             $newGroups = [];
-            foreach ($groups as $group) {
-                $groupsIDs [] = $group['Id'];
-                $newGroups [] = ['id' => $group['Id'], 'name' => $group['name']];
-            }
+            // add no group items
+            $newGroups [] = ['id' => 0, 'name' => 'No Group'];
 
+            foreach ($groups as $group) {
+                $groupsIDs [] = $group['id'];
+                $newGroups [] = ['id' => $group['id'], 'name' => $group['name']];
+            }
             if (count($groupsIDs) > 0) {
                 $db->where('project_id', $pid);
+                $db->orWhere('group_id', $groupsIDs, 'IN');
+            
                 $items = $db->get('boq');
             } else {
                 $newGroups = null;
