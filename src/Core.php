@@ -89,7 +89,7 @@ class  Core {
         $controller = new $className;
 
         // handle authentification
-        if($route_info['protect']) {
+        if(isset($route_info['protect']) && $route_info['protect']) {
             $token = AuthHelper::getBearerToken();
             if ($request->method !== 'OPTIONS' && (!$token || !AuthHelper::validateToken($token))) {
                 header("HTTP/1.1 401 Unauthorized");

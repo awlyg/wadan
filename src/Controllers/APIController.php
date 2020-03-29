@@ -27,7 +27,8 @@ class APIController extends BaseController
     // list all projects
     public function Index($request)
     {
-        $status = $request->data['status'];
+        $status = isset($request->data['status']) ? $request->data['status'] : 'all';
+        
         return $this->JSONResponse(ProjectService::getAllProjects($status));
     }
 
@@ -143,6 +144,20 @@ class APIController extends BaseController
         return $this->JSONResponse(NULL);
     }
 
+    // login with google, to be tested for security issues
+    public function loginWithEmail($request) {
+       
+        // get the user email
+        $email = $request->data['email'];
+        
+        $user = AuthService::checkEmail($email);
+
+        if($user) {
+            return $this->JSONResponse($user);
+        }
+
+        return $this->JSONResponse(NULL);
+    }
 
     // add new project
     public function newInvoice($request) {

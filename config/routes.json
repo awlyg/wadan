@@ -18,7 +18,7 @@
     "controller": "APIController",
     "action": "Index",
     "with_data": true,
-    "protect": true
+    "protect": false
   },
   "/api/projects/codes": {
     "controller": "APIController",
@@ -113,6 +113,11 @@
   "/api/auth/login": {
     "controller": "APIController",
     "action": "Login",
+    "with_data": true
+  },
+  "/api/auth/login/email": {
+    "controller": "APIController",
+    "action": "loginWithEmail",
     "with_data": true
   },
   "/api/users/all": {

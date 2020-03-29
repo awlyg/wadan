@@ -40,7 +40,11 @@ class Request {
     private function getRequestData() {
         if($this->method === 'GET') {
             $params = [];
-            parse_str(parse_url($this->url)['query'], $params);
+            $urlParse = parse_url($this->url);
+
+            if(isset($urlParse['query'])) {
+                parse_str(parse_url($this->url)['query'], $params);
+            }
             return $params;
         } else if(in_array($this->method, $this->acceptedMethods)) {
             return self::getJsonRequest();
