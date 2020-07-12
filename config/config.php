@@ -11,4 +11,6 @@ require_once DIR_BASE . 'config/routes-ar.php';
 require_once DIR_BASE . 'external/MysqliDb.php';
 
 //change here !
-$db = new MysqliDb ('localhost', 'inejih', 'inejih', 'adresses');
+
+
+$db = new MysqliDb ('localhost', 'root', NULL, 'erp');
