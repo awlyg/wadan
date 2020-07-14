@@ -20,6 +20,12 @@
     "with_data": true,
     "protect": false
   },
+  "/api/entity/groupby": {
+    "controller": "APIController",
+    "action": "groupBy",
+    "with_data": true,
+    "protect": false
+  },
   "/api/projects/codes": {
     "controller": "APIController",
     "action": "Codes",

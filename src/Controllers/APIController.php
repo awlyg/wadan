@@ -24,6 +24,19 @@ class APIController extends BaseController
         $this->c_language = \App\Core::getCurrentLanguage();
     }
 
+    function groupBy($request) {
+    
+        global $db;
+        
+        $data = $request->data;
+
+        $entity = $data['entity'];
+        $attr = $data['attr'];
+
+        $sql = 'SELECT COUNT(*) as sum, ' . $attr . ' FROM ' . $entity . ' WHERE deleted_at IS NULL GROUP BY ' . $attr;
+
+        return $this->JSONResponse($db->rawQuery($sql));
+    } 
     // list all projects
     public function Index($request)
     {
