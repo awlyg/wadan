@@ -4,12 +4,12 @@
     "action": "Index",
     "with_data": "false"
   },
-  "/files/pdf/document.pdf": {
+  "/api/files/pdf/document.pdf": {
     "controller": "DefaultController",
     "action": "printOrder",
     "with_data": "true"
   },
-  "/files/pdf/voucher.pdf": {
+  "/api/files/pdf/voucher.pdf": {
     "controller": "DefaultController",
     "action": "printVoucher",
     "with_data": "true"

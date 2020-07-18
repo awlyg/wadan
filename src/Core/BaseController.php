@@ -17,7 +17,10 @@ class BaseController
             if(file_exists(DIR_BASE . 'pages/' . $filename . '.html.php')){
                 require_once DIR_BASE . 'pages/' . $filename . '.html.php';
                 $content = ob_get_clean();
-                ob_end_flush();
+
+                if (ob_get_length()){
+                    ob_end_flush();
+                }
             }
             ob_start();
 

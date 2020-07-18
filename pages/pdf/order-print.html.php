@@ -11,18 +11,11 @@ foreach ($items as $item) {
     $total += $item['rate'] * $item['quantity'];
 }
 
+
 // calculate VAT
-if ($order['vat'] === 1) {
-    $vat = ($total * 5) / 100;
-}
+$vat = ($total * $order['vat_value']) / 100;
 
 $total = $total - $vat - $order['discount'];
-
-
-/*echo "<pre>";
-var_dump($items);
-die();*/
-
 
 ?>
 
@@ -161,14 +154,16 @@ die();*/
 
     <?php
     foreach ($items as $item) {
+        $rate = (float) $item['rate'];
+        $amount = (float) ($item['quantity'] * $item['rate']);
         ?>
         <tr>
             <td><?= $item['id']; ?></td>
             <td><?= $item['part_code'] ?></td>
             <td><?= $item['description']; ?></td>
             <td><?= $item['quantity']; ?></td>
-            <td><?= number_format((float)$item['rate'], 2, '.', ''); ?></td>
-            <td><?= number_format((float)($item['quantity'] * $item['rate']), 2, '.', ''); ?></td>
+            <td><?= number_format($rate, 2, '.', ''); ?></td>
+            <td><?= number_format($amount, 2, '.', ''); ?></td>
         </tr>
         <?php
     }
@@ -182,7 +177,7 @@ die();*/
         <td><?= number_format(($total + $vat)) ?></td>
     </tr>
     <tr>
-        <th colspan="5" class="vat">vat 5%</th>
+        <th colspan="5" class="vat">vat <?= $order['vat_value'] ?>%</th>
         <td><?= number_format($vat) ?></td>
     </tr>
     <tfoot>
