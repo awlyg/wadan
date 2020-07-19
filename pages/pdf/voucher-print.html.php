@@ -2,24 +2,6 @@
 $voucher = $data['voucher'];
 $beneficiary = $data['beneficiary'];
 
-/*
-foreach ($items as $item) {
-    $total += $item['rate'] * $item['quantity'];
-}
-
-// calculate VAT
-if ($order['vat'] === 1) {
-    $vat = ($total * 5) / 100;
-}
-
-$total = $total - $vat - $order['discount'];
-*/
-
-/*echo "<pre>";
-var_dump($items);
-die();*/
-
-
 ?>
 
 <!DOCTYPE html>
@@ -108,26 +90,26 @@ die();*/
         <th>Beneficiary ACC Bank</th>
         <td><?= $beneficiary['bank']; ?></td>
     </tr>
+    <tr>
+        <th>Amount</th>
+        <td><?= number_format($voucher['amount']); ?></td>
+    </tr>
 </table>
 
-</table>
 <columns column-count="1" vAlign="J" column-gap="7"/>
-
-<table class="items">
-</table>
 
 
 <columns column-count="2" vAlign="J" column-gap="7"/>
 
 <div class="d_bottom">
     <p><b>Prepared By:</b></p>
-    <p></p>
+    <p>ss</p>
 </div>
 <columnbreak/>
 
 <div class="d_bottom">
     <p><b>Approved By:</b></p>
-    <p></p>
+    <p>ss</p>
 </div>
 
 </body>

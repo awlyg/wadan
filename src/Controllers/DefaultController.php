@@ -94,13 +94,18 @@ class DefaultController extends BaseController
                 ]);
 
                 // return $html;
-                $mpdf = new Mpdf();
-                $mpdf->SetHTMLHeader($voucher['date']);
-                $mpdf->setFooter('{PAGENO}');
-                header('Content-Type: application/pdf');
+                try {
+                    header('Content-Type: application/pdf');
+                    $mpdf = new Mpdf();
+                    $mpdf->SetHTMLHeader($voucher['date']);
+                    $mpdf->setFooter('{PAGENO}');
+                    $mpdf->setTitle('Payment voucher');
 
-                $mpdf->WriteHTML($html);
-                $mpdf->Output();
+                    $mpdf->WriteHTML($html);
+                    $mpdf->Output('voucher-' . $voucher['id'] . '-' . $voucher['date'] . '.pdf', 'I');
+                } catch (\Exception $exception) {
+                    echo  $exception->getMessage();
+                }
             }
         }
     }
