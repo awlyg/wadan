@@ -6,6 +6,7 @@ use App\Core;
 use App\Core\BaseController;
 use App\Model\QuoteManager;
 use App\Services\CommonService;
+use App\Services\NotificationService;
 use Mpdf\Mpdf;
 
 class DefaultController extends BaseController
@@ -22,6 +23,17 @@ class DefaultController extends BaseController
     public function index()
     {
         header("location: /front");
+    }
+
+    // send notifications 
+    public function notifyUser($request) {
+
+        $code = $request->data->code;
+        $email = $request->data->email;
+
+        $sent = NotificationService::sendNotification($code, $email);
+        
+        return $this->JSONResponse($sent);
     }
 
 

@@ -431,5 +431,11 @@
     "action": "getBeneficiaryById",
     "with_data": true,
     "protect": true
+  },
+  "/api/notify": {
+    "controller": "DefaultController",
+    "action": "notifyUser",
+    "with_data": true,
+    "protect": true
   }
 }
