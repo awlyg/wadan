@@ -103,13 +103,13 @@ $beneficiary = $data['beneficiary'];
 
 <div class="d_bottom">
     <p><b>Prepared By:</b></p>
-    <p>ss</p>
+    <p>-</p>
 </div>
 <columnbreak/>
 
 <div class="d_bottom">
     <p><b>Approved By:</b></p>
-    <p>ss</p>
+    <p>-</p>
 </div>
 
 </body>

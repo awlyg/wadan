@@ -11,10 +11,12 @@ use PHPMailer\PHPMailer\SMTP;
 
 class NotificationService
 {
+
+    const EMAIL_HEDER = '';
     const EMAILS = [
         1215 => [
-            'text' => 'New Project was created and you\'re the responsible of it. <br /> project url: http://dd.dardelta.com.sa/projects/all',
-            'object' => 'New projet assigned to you',
+            'text' => 'New Project was created and you\'re the responsible of it, please check the ERP.',
+            'object' => 'New projet assigned to you | ERP Dar Delta',
         ],
         1216 => [
             'text' => 'New task assignee',
@@ -39,7 +41,7 @@ class NotificationService
 
         try {
             //Server settings
-            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
             $mail->isSMTP();                                            // Send using SMTP
             $mail->Host       = 'box5114.bluehost.com';                    // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
@@ -49,8 +51,8 @@ class NotificationService
             $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
         
             //Recipients
-            $mail->setFrom('noreply@dardelta.com.sa', 'Dar Delta ERP');
-            $mail->addAddress($recepient);               // Name is optional        
+            $mail->setFrom('noreply@dardelta.com.sa');
+            $mail->addAddress('elmoctar.yehdhih@gmail.com');               // Name is optional        
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = $object;
