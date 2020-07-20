@@ -30,7 +30,9 @@ class DefaultController extends BaseController
 
         $code = $request->data->code;
         $email = $request->data->email;
-        $sent = NotificationService::sendNotification($code, $email);
+        $id = $request->data->id;
+        
+        $sent = NotificationService::sendNotification($code, $email, $id);
         
         return $this->JSONResponse($sent);
     }

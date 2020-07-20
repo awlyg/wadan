@@ -15,17 +15,19 @@ class NotificationService
     const EMAIL_HEDER = '';
     const EMAILS = [
         1215 => [
-            'text' => 'New Project was created and you\'re the responsible of it, please check the ERP.',
             'object' => 'New projet assigned to you | ERP Dar Delta',
+            'text' => 'New Project was created and you\'re the responsible of it, please check the ERP.',
+            'url' => 'http://localhost:4200//projects/project/'
         ],
         1216 => [
-            'text' => 'New task assignee',
-            'object' => 'You\'ve a new task asigned to you'
-        ]
+            'object' => 'New task assignee | ERP Dar Delta ',
+            'text' => 'You\'ve a new task asigned to you, please check the ERP',
+            'url' => 'http://localhost:4200/tasks/task/'
+        ],
     ];
 
     // to send the notif
-    static function sendNotification($code, $recepient) {
+    static function sendNotification($code, $recepient, $id) {
         $codes = array_keys(self::EMAILS);
       
         if(!in_array($code, $codes)) {
@@ -35,13 +37,15 @@ class NotificationService
 
         $text = self::EMAILS[$code]['text'];
         $object = self::EMAILS[$code]['object'];
+        $url = self::EMAILS[$code]['url'];
+
         
 
         $mail = new PHPMailer(true);
 
         try {
             //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+           // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
             $mail->isSMTP();                                            // Send using SMTP
             $mail->Host       = 'box5114.bluehost.com';                    // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
@@ -51,12 +55,12 @@ class NotificationService
             $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
         
             //Recipients
-            $mail->setFrom('noreply@dardelta.com.sa');
+            $mail->setFrom('noreply@dardelta.com.sa', 'DARDELTA ERP');
             $mail->addAddress('elmoctar.yehdhih@gmail.com');               // Name is optional        
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = $object;
-            $mail->Body    = $text;
+            $mail->Body    = $text . '<br />' . 'check link <a href="'. $url . $id . '">here</a>.';
         
             if($mail->send()) {
                 return 'OK';
