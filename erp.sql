@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 19, 2020 at 01:00 AM
+-- Generation Time: Jul 20, 2020 at 11:19 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `boq` (
   `group_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `group_id` (`group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Dumping data for table `boq`
@@ -131,7 +131,8 @@ INSERT INTO `boq` (`id`, `Item`, `quantity`, `cost`, `price`, `progress`, `po_no
 (11, 'hkhkhk', 5644, 545, 14, 'hkhkhkhk', 'hkhk', '2020-02-10', NULL, 1),
 (12, 'RTT', 12, NULL, 200, '5%', NULL, '2020-02-04', NULL, 5),
 (13, 'RRR', 3, 10, 20, '45', NULL, '2020-02-03', NULL, 5),
-(14, 'Funny Item', 14, NULL, 50, '5%', 'UI', '2020-02-02', NULL, 6);
+(14, 'Funny Item', 14, NULL, 50, '5%', 'UI', '2020-02-02', NULL, 6),
+(15, 'GEEG ', 14, 1400, 140, '5%', '14', '2020-07-08', NULL, 7);
 
 -- --------------------------------------------------------
 
@@ -146,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `boq_group` (
   `project_id` int(11) NOT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Dumping data for table `boq_group`
@@ -158,7 +159,8 @@ INSERT INTO `boq_group` (`Id`, `name`, `project_id`, `deleted_at`) VALUES
 (3, 'Group Item', 19, NULL),
 (4, 'Cisco', 19, NULL),
 (5, 'GP45', 1, NULL),
-(6, 'AN', 1, NULL);
+(6, 'AN', 1, NULL),
+(7, 'Test Grou[', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -437,14 +439,14 @@ CREATE TABLE IF NOT EXISTS `project` (
   `link` varchar(200) COLLATE utf8mb4_bin DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Dumping data for table `project`
 --
 
 INSERT INTO `project` (`id`, `name`, `start_date`, `end_date`, `status`, `manager`, `code`, `po_value`, `expenses`, `link`, `deleted_at`) VALUES
-(1, 'project test 1', '2019-12-01', '2019-12-30T00:00:00.000Z', 'In Progress', 2, 'Code 1', '10', '1200000', 'http://www.google.com', NULL),
+(1, 'hjh', '2019-12-01', '2019-12-30T00:00:00.000Z', 'In Progress', 2, 'Code 1', '10', '1200000', 'http://www.google.com', NULL),
 (2, 'project test 2', '2020-01-15', '2019-12-26', 'In Progress', 2, 'Code2', '200000', '2400000', 'http://www.fb.com', NULL),
 (3, 'project test 3', '2019-12-01', '2019-12-26', 'On Hold', 1, 'Code4', '100000', '1200000', 'http://www.google.com', NULL),
 (4, 'project test 4', '2019-12-01', '2019-12-26', 'Archived', 1, 'Code5', '100000', '1200000', 'http://www.google.com', NULL),
@@ -467,7 +469,10 @@ INSERT INTO `project` (`id`, `name`, `start_date`, `end_date`, `status`, `manage
 (21, 'ccc', '2020-07-08T00:00:00.000Z', '2020-07-07T00:00:00.000Z', NULL, 1, 'dvdv', '122', NULL, NULL, NULL),
 (22, 'fff', '2020-07-04T00:00:00.000Z', '2020-07-06T00:00:00.000Z', NULL, 2, 'fhfh', '12412', NULL, NULL, NULL),
 (23, 'dgdg', '2020-07-08T00:00:00.000Z', '2020-07-07T00:00:00.000Z', NULL, 1, 'dffhfh', '111', NULL, NULL, NULL),
-(24, 'gdgdg', '2020-07-04T00:00:00.000Z', '2020-07-07T00:00:00.000Z', NULL, 2, 'dgdgdg', '254', NULL, NULL, NULL);
+(24, 'gdgdg', '2020-07-04T00:00:00.000Z', '2020-07-07T00:00:00.000Z', NULL, 2, 'dgdgdg', '254', NULL, NULL, NULL),
+(25, 'dgdg', '2020-07-16T00:00:00.000Z', '2020-07-07T00:00:00.000Z', NULL, NULL, 'dgdgdg', '645', NULL, NULL, NULL),
+(26, 'svsv', '2020-07-10T00:00:00.000Z', '2020-07-06T00:00:00.000Z', NULL, 2, 'svsv', '656', NULL, NULL, NULL),
+(27, 'DD', '2020-07-07T00:00:00.000Z', '2020-07-13T00:00:00.000Z', 'In Progress', 2, 'FF', '14', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -489,7 +494,7 @@ CREATE TABLE IF NOT EXISTS `purchase_item` (
   `status` varchar(50) COLLATE utf8mb4_bin DEFAULT 'initial',
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Dumping data for table `purchase_item`
@@ -509,10 +514,11 @@ INSERT INTO `purchase_item` (`id`, `part_code`, `quantity`, `rate`, `project`, `
 (11, 'FF', 25, '26', 5, 2, '', 0, '2020-02-06 01:36:46', 'Initial', NULL),
 (12, 'CC001', 15, '125', 9, 0, 'HD Camera', 1, NULL, 'Check In', NULL),
 (13, 'Yh', 120, '12', 2, 0, '', 1, NULL, 'Check In', NULL),
-(14, 'kjjk', 47, '5400', 4, 7, 'kk', 0, NULL, 'Initial', NULL),
+(14, 'kjjk', 47, '5400', 4, 7, 'kk', 1, '2020-07-19 16:55:50', 'Check In', NULL),
 (15, 'kjjk', 47, '5400', 4, 7, 'kk', 0, NULL, 'Initial', NULL),
 (16, 'Testing with', 1, '14', 1, 8, '', 1, '2020-07-18 22:10:37', 'Check In', NULL),
-(17, 'استغفر الله ', 1000, '1000', 1, 0, 'بليليل', 1, '2020-07-18 22:34:58', 'Check Out', NULL);
+(17, 'استغفر الله ', 1000, '1000', 1, 0, 'بليليل', 1, '2020-07-18 22:34:58', 'Check Out', NULL),
+(18, 'UEHT ', 214, '14', 0, 0, 'dsgdg', 1, NULL, 'Check In', NULL);
 
 -- --------------------------------------------------------
 
@@ -624,25 +630,28 @@ CREATE TABLE IF NOT EXISTS `task` (
   `description` mediumtext COLLATE utf8mb4_bin DEFAULT NULL,
   `priority` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `status` varchar(25) COLLATE utf8mb4_bin NOT NULL,
+  `owner` int(11) NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Dumping data for table `task`
 --
 
-INSERT INTO `task` (`id`, `name`, `description`, `priority`, `status`, `created_at`, `deleted_at`) VALUES
-(1, 'task one', 'je suis task 1', 'Meduim', 'Opened', '2020-01-25 22:12:53', NULL),
-(2, 'Test it', 'je suis en train de tester le task', 'High', 'On Hold', '2020-01-25 22:02:33', NULL),
-(3, 'jkljk', 'ljlkjkljk', 'Low', 'On Hold', '2020-01-25 22:01:59', '2020-02-09 17:28:46'),
-(4, 'Test task', 'test desc', 'High', 'Opened', '2020-02-02 21:32:41', NULL),
-(5, 'Test task', 'test desc', 'High', 'Closed', '2020-02-02 21:32:44', NULL),
-(6, 'Test task', 'test desc', 'High', 'Closed', '2020-02-02 21:32:46', '2020-02-02 23:43:50'),
-(7, 'Test task', 'test desc', 'High', 'Closed', '2020-02-02 21:32:46', '2020-02-02 23:43:47'),
-(8, 'Test task', 'test desc', 'High', 'Closed', '2020-02-02 21:32:47', '2020-02-02 23:43:44'),
-(9, 'مناقصة الطائف الخرمة وتربة', NULL, 'High', 'Opened', '2020-05-29 19:49:32', NULL);
+INSERT INTO `task` (`id`, `name`, `description`, `priority`, `status`, `owner`, `created_at`, `deleted_at`) VALUES
+(1, 'task one', 'je suis task 1', 'Meduim', 'Opened', 2, '2020-01-25 22:12:53', NULL),
+(2, 'Test it', 'je suis en train de tester le task', 'High', 'On Hold', 0, '2020-01-25 22:02:33', NULL),
+(3, 'jkljk', 'ljlkjkljk', 'Low', 'On Hold', 0, '2020-01-25 22:01:59', '2020-02-09 17:28:46'),
+(4, 'Test task', 'test desc', 'High', 'Opened', 0, '2020-02-02 21:32:41', NULL),
+(5, 'Test task', 'test desc', 'High', 'Closed', 8, '2020-02-02 21:32:44', NULL),
+(6, 'Test task', 'test desc', 'High', 'Closed', 0, '2020-02-02 21:32:46', '2020-02-02 23:43:50'),
+(7, 'Test task', 'test desc', 'High', 'Closed', 0, '2020-02-02 21:32:46', '2020-02-02 23:43:47'),
+(8, 'Test task', 'test desc', 'High', 'Closed', 0, '2020-02-02 21:32:47', '2020-02-02 23:43:44'),
+(9, 'مناقصة الطائف الخرمة وتربة', NULL, 'High', 'Opened', 4, '2020-05-29 19:49:32', NULL),
+(10, 'Look forwared', 'dgdgdgdg', 'High', 'Opened', 2, '2020-07-20 20:56:33', NULL),
+(11, 'you\'ve to create ur home work', 'sfsf', 'High', 'Opened', 2, '2020-07-20 21:14:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -729,7 +738,7 @@ CREATE TABLE IF NOT EXISTS `voucher` (
   `order_id` int(11) DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Dumping data for table `voucher`
@@ -741,7 +750,9 @@ INSERT INTO `voucher` (`id`, `type`, `amount`, `date`, `beneficiary`, `descripti
 (3, 'Wire Transfer', '400', '2020-02-02 19:54:05', 2, 'Hello worlds', 4, NULL),
 (4, 'Wire Transfer', '200', '2020-02-07 07:57:46', 1, 'hello', 4, NULL),
 (5, 'Wire Transfer', '5000', '2020-03-11 08:27:59', 3, 'pettycash', 6, NULL),
-(6, 'Check', '12000', '2020-07-18 22:37:44', 2, '', 0, NULL);
+(6, 'Check', '12000', '2020-07-18 22:37:44', 2, '', 0, NULL),
+(7, 'Cash', '1500', '2020-07-19 15:51:48', 1, 'tesxt', 0, NULL),
+(8, 'Cash', '1500', '2020-07-19 16:56:51', 2, 'testinmg', 0, NULL);
 
 --
 -- Constraints for dumped tables

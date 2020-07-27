@@ -17,12 +17,22 @@ class NotificationService
         1215 => [
             'object' => 'New projet assigned to you | ERP Dar Delta',
             'text' => 'New Project was created and you\'re the responsible of it, please check the ERP.',
-            'url' => 'http://localhost:4200//projects/project/'
+            'url' => 'http://dd.dardelta.com.sa/front/projects/project/'
         ],
         1216 => [
             'object' => 'New task assignee | ERP Dar Delta ',
             'text' => 'You\'ve a new task asigned to you, please check the ERP',
-            'url' => 'http://localhost:4200/tasks/task/'
+            'url' => 'http://dd.dardelta.com.sa/front/tasks/task/'
+        ],
+        1217 => [
+            'object' => 'Task Unassigned from you | ERP Dar Delta ',
+            'text' => 'You\'ve a new task removed from you, please check the ERP',
+            'url' => 'http://dd.dardelta.com.sa/front/tasks/task/'
+        ],
+        1214 => [
+            'object' => 'Project Unassigned from you | ERP Dar Delta ',
+            'text' => 'You\'ve a new project removed from you, please check the ERP',
+            'url' => 'http://dd.dardelta.com.sa/front/tasks/task/'
         ],
     ];
 
@@ -56,12 +66,13 @@ class NotificationService
         
             //Recipients
             $mail->setFrom('noreply@dardelta.com.sa', 'DARDELTA ERP');
-            $mail->addAddress('elmoctar.yehdhih@gmail.com');               // Name is optional        
+            $mail->addAddress($recepient);               // Name is optional        
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = $object;
-            $mail->Body    = $text . '<br />' . 'check link <a href="'. $url . $id . '">here</a>.';
-        
+            // $mail->Body    = $text . '<br />' . 'check link <a href="'. $url . $id . '">here</a>.';
+            $mail->Body    = $text;
+
             if($mail->send()) {
                 return 'OK';
             }
