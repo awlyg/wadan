@@ -22,7 +22,7 @@ class DefaultController extends BaseController
     //render site hompage
     public function index()
     {
-        header("location: /front");
+        // header("location: /front");
     }
 
     // send notifications 
